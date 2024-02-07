@@ -1,4 +1,4 @@
-package Framework;
+package Model;
 
 public interface Palvelupiste {
 }
