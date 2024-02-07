@@ -1,4 +1,4 @@
 package Model;
 
-public interface Palvelupiste {
+public class Palvelupiste {
 }
