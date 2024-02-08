@@ -5,15 +5,14 @@ import simu.framework.*;
 // TODO:
 // Asiakas koodataan simulointimallin edellyttämällä tavalla (data!)
 public class Asiakas {
-	private double saapumisaika;
-	private double poistumisaika;
+	private double saapumisaika;	// simulaatioon saapumisen aika
+	private double poistumisaika;	// simulaatiosta lähtemisen aika
 	private int id;
 	private static int i = 1;
 	private static long sum = 0;
 	
 	public Asiakas(){
 	    id = i++;
-	    
 		saapumisaika = Kello.getInstance().getAika();
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 	}
@@ -46,7 +45,7 @@ public class Asiakas {
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui: " +poistumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi: " +(poistumisaika-saapumisaika));
 		sum += (poistumisaika-saapumisaika);
-		double keskiarvo = sum/id;
+		double keskiarvo = sum/id; 
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
 	}
 
