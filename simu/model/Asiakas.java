@@ -1,5 +1,8 @@
 package simu.model;
 
+import eduni.distributions.ContinuousGenerator;
+import eduni.distributions.Generator;
+import eduni.distributions.Normal;
 import simu.framework.*;
 
 // TODO:
@@ -10,8 +13,13 @@ public class Asiakas {
 	private int id;
 	private static int i = 1;
 	private static long sum = 0;
-	
+	ContinuousGenerator kävelyaika = new Normal(10, 2);
+
+	public double getKävelyaika(){
+		return kävelyaika.sample();
+	}
 	public Asiakas(){
+		kävelyaika.setSeed(100);
 	    id = i++;
 		saapumisaika = Kello.getInstance().getAika();
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
@@ -41,9 +49,9 @@ public class Asiakas {
 	
 	public void raportti(){
 		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
-		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
-		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui: " +poistumisaika);
-		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi: " +(poistumisaika-saapumisaika));
+		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui kentälle: " +saapumisaika);
+		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui kentältä: " +poistumisaika);
+		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi kentällä: " +(poistumisaika-saapumisaika));
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id; 
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
