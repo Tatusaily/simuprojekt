@@ -32,18 +32,22 @@ public class OmaMoottori extends Moottori{
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 
 		Asiakas a;
-		switch ((TapahtumanTyyppi)t.getTyyppi()){
+		switch ((TapahtumanTyyppi)t.getTyyppi()){		// Outo typecast
+														// Tässä asiakkaat menee jonoon.
+														// TODO laita asiakas myöhemmin jonoon kävelynopeuden perusteella
 
 			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
 				       saapumisprosessi.generoiSeuraava();	// ARR1 luo aina uuden ARR1 tapahtuman.
 				break;
-			case POISTU_CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
 
+			case POISTU_CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
 				   	   palvelupisteet[1].lisaaJonoon(a);
 				break;
+
 			case POISTU_TARKASTUS: a = (Asiakas)palvelupisteet[1].otaJonosta();
 				   	   palvelupisteet[2].lisaaJonoon(a);
 				break;
+
 			case POISTU_BOARDING:
 				       a = (Asiakas)palvelupisteet[2].otaJonosta();
 					   a.setPoistumisaika(Kello.getInstance().getAika());
