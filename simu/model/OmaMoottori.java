@@ -14,11 +14,11 @@ public class OmaMoottori extends Moottori{
 
 		palvelupisteet = new Palvelupiste[3];
 
-		palvelupisteet[0]=new Palvelupiste(new Normal(10,6), tapahtumalista, TapahtumanTyyppi.DEP1);
-		palvelupisteet[1]=new Palvelupiste(new Normal(10,10), tapahtumalista, TapahtumanTyyppi.DEP2);
-		palvelupisteet[2]=new Palvelupiste(new Normal(5,3), tapahtumalista, TapahtumanTyyppi.DEP3);
+		palvelupisteet[0]=new Palvelupiste(new Normal(10,6), tapahtumalista, TapahtumanTyyppi.POISTU_CHECKIN, "Check-in");
+		palvelupisteet[1]=new Palvelupiste(new Normal(10,10), tapahtumalista, TapahtumanTyyppi.POISTU_TARKASTUS, "Turvatarkastus");
+		palvelupisteet[2]=new Palvelupiste(new Normal(5,3), tapahtumalista, TapahtumanTyyppi.POISTU_BOARDING, "Boarding");
 
-		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
+		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
 
 	}
 
@@ -32,18 +32,23 @@ public class OmaMoottori extends Moottori{
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 
 		Asiakas a;
-		switch ((TapahtumanTyyppi)t.getTyyppi()){
+		switch ((TapahtumanTyyppi)t.getTyyppi()){		// Outo typecast
+														// Tässä asiakkaat menee jonoon.
+														// TODO laita asiakas myöhemmin jonoon kävelynopeuden perusteella
 
-			case ARR1: palvelupisteet[0].lisaaJonoon(new Asiakas());
-				       saapumisprosessi.generoiSeuraava();
+			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
+				       saapumisprosessi.generoiSeuraava();	// ARR1 luo aina uuden ARR1 tapahtuman.
 				break;
-			case DEP1: a = (Asiakas)palvelupisteet[0].otaJonosta();
+
+			case POISTU_CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
 				   	   palvelupisteet[1].lisaaJonoon(a);
 				break;
-			case DEP2: a = (Asiakas)palvelupisteet[1].otaJonosta();
+
+			case POISTU_TARKASTUS: a = (Asiakas)palvelupisteet[1].otaJonosta();
 				   	   palvelupisteet[2].lisaaJonoon(a);
 				break;
-			case DEP3:
+
+			case POISTU_BOARDING:
 				       a = (Asiakas)palvelupisteet[2].otaJonosta();
 					   a.setPoistumisaika(Kello.getInstance().getAika());
 			           a.raportti();
