@@ -14,7 +14,7 @@ public class Asiakas implements Comparable<Asiakas> {
 	private static int i = 1;
 	private static long sum = 0;
 	private double jonoaika = 0;
-	ContinuousGenerator kävelyaika = new Normal(10, 25);
+	ContinuousGenerator kävelyaika = new Normal(15, 10);
 
 	public double getKävelyaika(){
 		return kävelyaika.sample();
