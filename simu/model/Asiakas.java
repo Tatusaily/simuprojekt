@@ -10,6 +10,7 @@ import simu.framework.*;
 public class Asiakas implements Comparable<Asiakas> {
 	private double saapumisaika;	// simulaatioon saapumisen aika
 	private double poistumisaika;	// simulaatiosta lähtemisen aika
+	private boolean kauppassakäyty = false; // lisätty muuttuja
 	private int id;
 	private static int i = 1;
 	private static long sum = 0;
@@ -20,10 +21,23 @@ public class Asiakas implements Comparable<Asiakas> {
 		return kävelyaika.sample();
 	}
 	public Asiakas(){
+
 		kävelyaika.setSeed(100);
 	    id = i++;
 		saapumisaika = Kello.getInstance().getAika();
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
+	}
+//Getterit ja setterit
+	public boolean isKauppassakäyty() {
+		return kauppassakäyty;
+	}
+
+	public boolean getKauppassakäyty() {
+		return kauppassakäyty;
+	}
+
+	public void setKauppassakäyty(boolean kauppassakäyty){
+		this.kauppassakäyty = kauppassakäyty;
 	}
 
 	public double getPoistumisaika() {
@@ -62,6 +76,9 @@ public class Asiakas implements Comparable<Asiakas> {
 		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui kentälle: " +saapumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui kentältä: " +poistumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi kentällä: " +(poistumisaika-saapumisaika));
+		String kauppaInfo = kauppassakäyty ? "Asiakas kävi kaupassa." : "Asiakas ei käynyt kaupassa.";
+		Trace.out(Trace.Level.INFO, kauppaInfo);
+
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id; 
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);

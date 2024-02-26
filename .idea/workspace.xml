@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e127bb0-c5a3-4109-a4f7-9f3c338ba5f4" name="Changes" comment="" />
+    <list default="true" id="2e127bb0-c5a3-4109-a4f7-9f3c338ba5f4" name="Changes" comment="..">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_2_2024_14_34_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_2_2024_14_34__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/simuprojekt/simu/model/OmaMoottori.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simuprojekt/simu/model/OmaMoottori.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/simuprojekt/testi/Simulaattori.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simuprojekt/testi/Simulaattori.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simu/model/Asiakas.java" beforeDir="false" afterPath="$PROJECT_DIR$/simu/model/Asiakas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simu/model/OmaMoottori.java" beforeDir="false" afterPath="$PROJECT_DIR$/simu/model/OmaMoottori.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simu/model/TapahtumanTyyppi.java" beforeDir="false" afterPath="$PROJECT_DIR$/simu/model/TapahtumanTyyppi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testi/Simulaattori.java" beforeDir="false" afterPath="$PROJECT_DIR$/testi/Simulaattori.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="vaihe1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,21 +36,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Simulaattori.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vaihe1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Simulaattori.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "abdu",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -57,8 +67,19 @@
       <option name="presentableId" value="Default" />
       <updated>1707391036817</updated>
       <workItem from="1707391038316" duration="4709000" />
-      <workItem from="1707911606251" duration="2452000" />
+      <workItem from="1707911606251" duration="2924000" />
+      <workItem from="1707995551186" duration="294000" />
+      <workItem from="1708340685511" duration="653000" />
+      <workItem from="1708944919144" duration="11228000" />
     </task>
+    <task id="LOCAL−00001" summary="..">
+      <option name="closed" value="true" />
+      <created>1707917833197</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1707917833197</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,5 +107,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=".." />
+    <option name="LAST_COMMIT_MESSAGE" value=".." />
   </component>
 </project>
