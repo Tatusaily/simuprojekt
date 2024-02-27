@@ -8,11 +8,14 @@ import simu.model.OmaMoottori;
 public class Simulaattori { //Tekstipohjainen
 
 	public static void main(String[] args) {
-		
+
+		simu.view.simuGUI.launch(simu.view.simuGUI.class);
+
+		/*
 		Trace.setTraceLevel(Level.INFO);
 		Moottori m = new OmaMoottori();
 		m.setSimulointiaika(100);
 		m.aja();
-		///
+		 */
 	}
 }
