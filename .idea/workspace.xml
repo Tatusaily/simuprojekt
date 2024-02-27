@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e127bb0-c5a3-4109-a4f7-9f3c338ba5f4" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_2_2024_14_34_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_2_2024_14_34__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simuprojekt/simu/model/OmaMoottori.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simuprojekt/simu/model/OmaMoottori.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simuprojekt/testi/Simulaattori.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simuprojekt/testi/Simulaattori.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simu/model/Asiakas.java" beforeDir="false" afterPath="$PROJECT_DIR$/simu/model/Asiakas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simu/model/OmaMoottori.java" beforeDir="false" afterPath="$PROJECT_DIR$/simu/model/OmaMoottori.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simu/model/TapahtumanTyyppi.java" beforeDir="false" afterPath="$PROJECT_DIR$/simu/model/TapahtumanTyyppi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testi/Simulaattori.java" beforeDir="false" afterPath="$PROJECT_DIR$/testi/Simulaattori.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +62,7 @@
       <workItem from="1707911606251" duration="2924000" />
       <workItem from="1707995551186" duration="294000" />
       <workItem from="1708340685511" duration="653000" />
-      <workItem from="1708944919144" duration="11228000" />
+      <workItem from="1708944919144" duration="12077000" />
     </task>
     <task id="LOCAL−00001" summary="..">
       <option name="closed" value="true" />
@@ -79,7 +71,21 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1707917833197</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="..">
+      <option name="closed" value="true" />
+      <created>1708972529453</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1708972529454</updated>
+    </task>
+    <task id="LOCAL−00003" summary="..">
+      <option name="closed" value="true" />
+      <created>1708972739469</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1708972739469</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
