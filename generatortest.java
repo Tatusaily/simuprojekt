@@ -1,5 +1,3 @@
-package testi;
-
 import eduni.distributions.ContinuousGenerator;
 import eduni.distributions.Generator;
 import eduni.distributions.Normal;
