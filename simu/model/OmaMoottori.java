@@ -37,6 +37,7 @@ public class OmaMoottori extends Moottori{
 
 			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
 				saapumisprosessi.generoiSeuraava();	// ARR1 luo aina uuden ARR1 tapahtuman.
+				// kontrolleri.visualisoiAsiakas(); // TÄÄ VOIDAAN OTTAA SITTEN KUN ON CANVAS
 				break;
 
 			case POISTU_CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
