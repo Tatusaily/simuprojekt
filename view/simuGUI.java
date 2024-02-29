@@ -23,6 +23,8 @@ public class simuGUI extends Application implements ISimulaattorinUI {
 
     @Override
     public void start(Stage stage) throws Exception {
+        // Kontrollerin luonti
+        kontrolleri = new controller.Kontrolleri(this);
         // aloitellaan näkymä.
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("simuGUI.fxml")));
         stage.setScene(new Scene(xml, 602, 400));

@@ -12,7 +12,7 @@ public class OmaMoottori extends Moottori{
 	private Palvelupiste[] palvelupisteet;
 
 	public OmaMoottori(IKontrolleriForM kontrolleri){
-        super(kontrolleri);
+		super(kontrolleri);
 		palvelupisteet = new Palvelupiste[3];
 		palvelupisteet[0]=new Palvelupiste(new Normal(10,6), tapahtumalista, TapahtumanTyyppi.POISTU_CHECKIN, "Check-in");
 		palvelupisteet[1]=new Palvelupiste(new Normal(10,10), tapahtumalista, TapahtumanTyyppi.POISTU_TARKASTUS, "Turvatarkastus");
@@ -32,8 +32,7 @@ public class OmaMoottori extends Moottori{
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 
 		Asiakas a;
-		switch ((TapahtumanTyyppi)t.getTyyppi()){		// Outo typecast
-														// Tässä asiakkaat menee jonoon.
+		switch ((TapahtumanTyyppi)t.getTyyppi()){	    // Asiakkaat menee jonoon
 														// TODO laita asiakas myöhemmin jonoon kävelynopeuden perusteella (ONKO TEHTY?)
 
 			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
