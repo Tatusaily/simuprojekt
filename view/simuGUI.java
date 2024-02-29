@@ -76,13 +76,18 @@ public class simuGUI extends Application implements ISimulaattorinUI {
 
     @Override
     public long getViive() {
-        TextField viive = (TextField) xml.lookup("#viive");
-        return Long.parseLong(viive.getText());
+        Slider viive = (Slider) xml.lookup("#nopeusarvo");
+        return (long) viive.getValue();
     }
 
     @Override
     public void setLoppuaika(double aika) {
         Label tulos = (Label) xml.lookup("#tulos");
         tulos.setText(String.valueOf(aika));
+    }
+
+    @Override
+    public IVisualisointi getVisualisointi() {
+        return null;
     }
 }
