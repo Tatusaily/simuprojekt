@@ -1,10 +1,10 @@
-package simu.view;
+package view;
 
+import controller.IKontrolleriForV;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,9 +16,10 @@ import simu.framework.Moottori;
 
 import java.util.Objects;
 
-public class simuGUI extends Application {
-    Parent xml;
-    Moottori moottori = new OmaMoottori(this);
+public class simuGUI extends Application implements ISimulaattorinUI {
+    private Parent xml;
+    //Kontrollerin esittely (tarvitaan käyttöliittymässä)
+    private IKontrolleriForV kontrolleri;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -32,11 +33,8 @@ public class simuGUI extends Application {
         Button startbutton = (Button) xml.lookup("#aloita");
         startbutton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
-                TextField aika = (TextField) xml.lookup("#simulointiaika");
                 try {
-                    moottori.setSimulointiaika(Integer.parseInt(aika.getText()));
-                    Trace.setTraceLevel(Level.INFO);
-                    moottori.aja();
+                    kontrolleri.kaynnistaSimulointi();
                     startbutton.setDisable(true);   // Lukitaan nappi kun simulointi on käynnissä (ei voi käynnistää kahta simulointia).
                 } catch (Exception e) {
                     System.out.println("ERROR (START BUTTON) " + e);
@@ -66,5 +64,23 @@ public class simuGUI extends Application {
     public void setkokonaisaika(int kokonaisaika) {
         Label kokonaisaika_label = (Label) xml.lookup("#kokonaisaika");
         kokonaisaika_label.setText(String.valueOf(kokonaisaika));
+    }
+
+    @Override
+    public double getAika() {
+        TextField aika = (TextField) xml.lookup("#simulointiaika");
+        return Double.parseDouble(aika.getText());
+    }
+
+    @Override
+    public long getViive() {
+        TextField viive = (TextField) xml.lookup("#viive");
+        return Long.parseLong(viive.getText());
+    }
+
+    @Override
+    public void setLoppuaika(double aika) {
+        Label tulos = (Label) xml.lookup("#tulos");
+        tulos.setText(String.valueOf(aika));
     }
 }
