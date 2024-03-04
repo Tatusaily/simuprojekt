@@ -1,144 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.simuGUI">
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.simuGUI">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
-         <left>
-            <VBox prefHeight="400.0" prefWidth="219.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="600.0" prefWidth="270.0">
+         <children>
+            <AnchorPane fx:id="sidepanel" prefHeight="615.0" prefWidth="270.0" styleClass="sidepanel" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                <children>
-                  <VBox prefHeight="70.0" prefWidth="205.0">
+                  <Pane fx:id="sidepanel_top" layoutX="28.0" layoutY="29.0" prefHeight="293.0" prefWidth="215.0" styleClass="sidepanel-top" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                      <children>
-                        <VBox prefHeight="85.0" prefWidth="205.0">
+                        <Pane layoutY="-9.0" prefHeight="112.0" prefWidth="215.0">
                            <children>
-                              <VBox prefHeight="37.0" prefWidth="205.0">
-                                 <children>
-                                    <Label text="Simulaation Pituus">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="simulointiaika" text="1000">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="50.0" prefWidth="205.0">
-                                 <children>
-                                    <Label text="Simulaation Nopeus">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Slider fx:id="nopeusarvo" max="150.0" min="25.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
-                                 </children>
-                              </VBox>
+                              <TextField fx:id="simulointiaika" layoutX="33.0" layoutY="73.0" />
+                              <Label layoutX="79.0" layoutY="43.0" text="PITUUS" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
-                        </VBox>
+                        </Pane>
+                        <Pane layoutX="-7.0" layoutY="103.0" prefHeight="105.0" prefWidth="229.0">
+                           <children>
+                              <Slider fx:id="nopeusarvo" layoutX="45.0" layoutY="67.0" />
+                              <Label layoutX="81.0" layoutY="32.0" text="NOPEUS" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="8.0" layoutY="206.0" prefHeight="88.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="aloita" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="76.0" text="START" />
+                              <Button fx:id="stopnappi" layoutX="110.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="76.0" text="STOP" />
+                           </children>
+                        </Pane>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-                  <HBox alignment="CENTER" prefHeight="6.0" prefWidth="205.0">
+                  </Pane>
+                  <Pane fx:id="sidepanel_bottom" layoutX="28.0" layoutY="346.0" prefHeight="222.0" prefWidth="215.0" styleClass="sidepanel-bottom" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                      <children>
-                        <Button fx:id="stopnappi" cancelButton="true" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="STOP">
-                           <opaqueInsets>
-                              <Insets left="5.0" right="5.0" />
-                           </opaqueInsets>
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="aloita" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #09ff00;" text="ALOITA">
-                           <opaqueInsets>
-                              <Insets left="5.0" right="5.0" />
-                           </opaqueInsets>
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Button>
+                        <Pane layoutX="-7.0" prefHeight="77.0" prefWidth="229.0">
+                           <children>
+                              <Label layoutX="21.0" layoutY="25.0" text="KOKONAISAIKA" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="kokonaisaika" layoutX="178.0" layoutY="25.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutY="73.0" prefHeight="77.0" prefWidth="215.0">
+                           <children>
+                              <Label layoutX="29.0" layoutY="25.0" text="KESKIARVO" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="asiakas_keskiarvo" layoutX="170.0" layoutY="25.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutY="150.0" prefHeight="77.0" prefWidth="215.0">
+                           <children>
+                              <Label layoutX="27.0" layoutY="25.0" text="ASIAKKAAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="asiakas_lkm" layoutX="168.0" layoutY="25.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
-                     <opaqueInsets>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="383.0" spacing="10.0">
-                           <children>
-                              <Label text="Keskiarvo aika">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="asiakas_keskiarvo" text="0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="383.0" spacing="10.0">
-                           <children>
-                              <Label text="Kokonaisaika">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="kokonaisaika" text="0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="383.0" spacing="10.0">
-                           <children>
-                              <Label text="Asiakkat LKM">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="asiakas_lkm" text="0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  </Pane>
                </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </opaqueInsets>
-            </VBox>
-         </left>
-      </BorderPane>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>

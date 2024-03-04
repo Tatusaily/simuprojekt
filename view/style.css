@@ -1,0 +1,26 @@
+.sidepanel {
+    -fx-background-color: #2207bb;
+    /*-fx-border-color: #2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+.sidepanel-top {
+    -fx-background-color: #2207bb;
+    /*-fx-border-color: #2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+.sidepanel-bottom {
+    -fx-background-color: #2207bb;
+    /*-fx-border-color: #2207bb;*/
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
