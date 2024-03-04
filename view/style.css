@@ -1,35 +1,54 @@
+.root {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+}
+
 .sidepanel {
-    -fx-background-color: #2f2e3b;
-    -fx-border-color: #2a293a;
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
     -fx-border-width: 0px 2px 0px 0px;
     -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .sidepanel-top {
-    -fx-background-color: #39384b;
-    -fx-border-color: #2a293a;
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
     -fx-border-width: 2px 2px 2px 2px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .sidepanel-bottom {
-    -fx-background-color: #3f3e59;
-    -fx-border-color: #2a293a;
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
     -fx-border-width: 2px 2px 2px 2px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .grid {
-    -fx-background-color: #39384b;
-    -fx-border-color: #2a293a;
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
     -fx-border-width: 2px 2px 2px 2px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+
+.grid-title {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px 20px 0px 0px;
+    -fx-background-radius: 20px 20px 0px 0px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .button-stop {
@@ -39,6 +58,7 @@
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .button-aloita {
@@ -48,6 +68,7 @@
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .button-stop:hover {

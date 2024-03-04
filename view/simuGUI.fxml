@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,7 +19,7 @@
                <children>
                   <Pane fx:id="sidepanel_top" layoutX="28.0" layoutY="29.0" prefHeight="293.0" prefWidth="215.0" styleClass="sidepanel-top" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                      <children>
-                        <Pane layoutY="-9.0" prefHeight="112.0" prefWidth="215.0">
+                        <Pane layoutX="1.0" layoutY="14.0" prefHeight="112.0" prefWidth="215.0">
                            <children>
                               <TextField fx:id="simulointiaika" layoutX="33.0" layoutY="73.0" />
                               <Label layoutX="79.0" layoutY="43.0" text="PITUUS" textFill="WHITE">
@@ -50,46 +51,64 @@
                                  </font></Button>
                            </children>
                         </Pane>
+                        <Pane prefHeight="44.0" prefWidth="215.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="61.0" layoutY="9.0" text="ASETUKSET" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                   <Pane fx:id="sidepanel_bottom" layoutX="28.0" layoutY="346.0" prefHeight="222.0" prefWidth="215.0" styleClass="sidepanel-bottom" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                      <children>
-                        <Pane layoutX="-7.0" prefHeight="77.0" prefWidth="229.0">
+                        <Pane layoutY="59.0" prefHeight="37.0" prefWidth="215.0">
                            <children>
-                              <Label layoutX="21.0" layoutY="25.0" text="KOKONAISAIKA" textFill="WHITE">
+                              <Label layoutX="24.0" layoutY="5.0" text="KOKONAISAIKA" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="kokonaisaika" layoutX="178.0" layoutY="25.0" text="0" textFill="WHITE">
+                              <Label fx:id="kokonaisaika" layoutX="181.0" layoutY="5.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutY="73.0" prefHeight="77.0" prefWidth="215.0">
+                        <Pane prefHeight="44.0" prefWidth="215.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
                            <children>
-                              <Label layoutX="29.0" layoutY="25.0" text="KESKIARVO" textFill="WHITE">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="asiakas_keskiarvo" layoutX="170.0" layoutY="25.0" text="0" textFill="WHITE">
+                              <Label layoutX="77.0" layoutY="9.0" text="TIEDOT" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutY="150.0" prefHeight="77.0" prefWidth="215.0">
+                        <Pane layoutY="111.0" prefHeight="37.0" prefWidth="215.0">
                            <children>
-                              <Label layoutX="27.0" layoutY="25.0" text="ASIAKKAAT" textFill="WHITE">
+                              <Label layoutX="24.0" layoutY="5.0" text="KESKIARVO" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="asiakas_lkm" layoutX="168.0" layoutY="25.0" text="0" textFill="WHITE">
+                              <Label fx:id="asiakas_keskiarvo" layoutX="181.0" layoutY="5.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutY="160.0" prefHeight="37.0" prefWidth="215.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="5.0" text="ASIAKKAAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="asiakas_lkm" layoutX="181.0" layoutY="5.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
@@ -102,122 +121,147 @@
             </AnchorPane>
          </children>
       </VBox>
-      <HBox prefHeight="600.0" prefWidth="630.0">
+      <HBox prefHeight="600.0" prefWidth="630.0" styleClass="root" stylesheets="@style.css">
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="644.0">
                <children>
                   <Pane layoutX="28.0" layoutY="18.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
                      <children>
-                        <Label layoutX="89.0" layoutY="30.0" text="CHECK-IN" textFill="WHITE">
+                        <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="73.0" layoutY="83.0" text="ASIAKKAAT" textFill="WHITE">
+                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="178.0" layoutY="83.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="28.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
-                     <children>
-                        <Label layoutX="107.0" layoutY="26.0" text="AULA" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="86.0" layoutY="78.0" text="ASIAKKAAT" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="191.0" layoutY="78.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="343.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
-                     <children>
-                        <Label layoutX="89.0" layoutY="30.0" text="KAUPPA" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="75.0" layoutY="79.0" text="ASIAKKAAT" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="180.0" layoutY="79.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="28.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
-                     <children>
-                        <Label layoutX="84.0" layoutY="27.0" text="BOARDING" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="66.0" layoutY="82.0" text="ASIAKKAAT" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="171.0" layoutY="82.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="343.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
-                     <children>
-                        <Label layoutX="78.0" layoutY="25.0" text="LENTOKONE" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="82.0" layoutY="86.0" text="ASIAKKAAT" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="189.0" layoutY="86.0" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="89.0" layoutY="9.0" text="CHECK-IN" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                   <Pane layoutX="343.0" layoutY="18.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
                      <children>
-                        <Label layoutX="52.0" layoutY="31.0" text="TURVATARKASTUS" textFill="WHITE">
+                        <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="83.0" layoutY="77.0" text="ASIAKKAAT" textFill="WHITE">
+                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="188.0" layoutY="77.0" text="0" textFill="WHITE">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="52.0" layoutY="9.0" text="TURVATARKASTUS" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="28.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
+                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="107.0" layoutY="9.0" text="AULA" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="343.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="96.0" layoutY="9.0" text="KAUPPA" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="28.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="84.0" layoutY="9.0" text="BOARDING" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="343.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                           <children>
+                              <Label layoutX="78.0" layoutY="9.0" text="LENTOKONE" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <ProgressBar layoutX="30.0" layoutY="120.0" prefWidth="200.0" progress="0.0" />
                      </children>
                   </Pane>
                </children>
