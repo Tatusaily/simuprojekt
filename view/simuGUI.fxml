@@ -17,7 +17,7 @@
          <children>
             <AnchorPane fx:id="sidepanel" prefHeight="615.0" prefWidth="270.0" styleClass="sidepanel" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                <children>
-                  <Pane fx:id="sidepanel_top" layoutX="28.0" layoutY="29.0" prefHeight="293.0" prefWidth="215.0" styleClass="sidepanel-top" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
+                  <Pane fx:id="sidepanel_top" layoutX="28.0" layoutY="29.0" prefHeight="293.0" prefWidth="215.0" styleClass="rounded-box" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                      <children>
                         <Pane layoutX="1.0" layoutY="14.0" prefHeight="112.0" prefWidth="215.0">
                            <children>
@@ -51,9 +51,9 @@
                                  </font></Button>
                            </children>
                         </Pane>
-                        <Pane prefHeight="44.0" prefWidth="215.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="44.0" prefWidth="215.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
-                              <Label layoutX="61.0" layoutY="9.0" text="ASETUKSET" textFill="WHITE">
+                              <Label layoutX="61.0" layoutY="9.0" styleClass="text" stylesheets="@style.css" text="ASETUKSET" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
@@ -62,7 +62,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane fx:id="sidepanel_bottom" layoutX="28.0" layoutY="346.0" prefHeight="222.0" prefWidth="215.0" styleClass="sidepanel-bottom" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
+                  <Pane fx:id="sidepanel_bottom" layoutX="28.0" layoutY="346.0" prefHeight="222.0" prefWidth="215.0" styleClass="rounded-box" stylesheets="@../../../IdeaProjects/simuprojekt/view/style.css">
                      <children>
                         <Pane layoutY="59.0" prefHeight="37.0" prefWidth="215.0">
                            <children>
@@ -78,7 +78,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane prefHeight="44.0" prefWidth="215.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="44.0" prefWidth="215.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="77.0" layoutY="9.0" text="TIEDOT" textFill="WHITE">
                                  <font>
@@ -125,7 +125,7 @@
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="644.0">
                <children>
-                  <Pane layoutX="28.0" layoutY="18.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                  <Pane layoutX="28.0" layoutY="18.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box" stylesheets="@style.css">
                      <children>
                         <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
@@ -137,7 +137,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="89.0" layoutY="9.0" text="CHECK-IN" textFill="WHITE">
                                  <font>
@@ -148,7 +148,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane layoutX="343.0" layoutY="18.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                  <Pane layoutX="343.0" layoutY="18.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box" stylesheets="@style.css">
                      <children>
                         <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
@@ -160,7 +160,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="52.0" layoutY="9.0" text="TURVATARKASTUS" textFill="WHITE">
                                  <font>
@@ -171,7 +171,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane layoutX="28.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                  <Pane layoutX="28.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box" stylesheets="@style.css">
                      <children>
                         <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
@@ -183,7 +183,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="107.0" layoutY="9.0" text="AULA" textFill="WHITE">
                                  <font>
@@ -194,7 +194,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane layoutX="343.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                  <Pane layoutX="343.0" layoutY="218.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box" stylesheets="@style.css">
                      <children>
                         <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
@@ -206,7 +206,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="96.0" layoutY="9.0" text="KAUPPA" textFill="WHITE">
                                  <font>
@@ -217,7 +217,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane layoutX="28.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                  <Pane layoutX="28.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box" stylesheets="@style.css">
                      <children>
                         <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
@@ -229,7 +229,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="84.0" layoutY="9.0" text="BOARDING" textFill="WHITE">
                                  <font>
@@ -240,7 +240,7 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane layoutX="343.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid" stylesheets="@style.css">
+                  <Pane layoutX="343.0" layoutY="418.0" prefHeight="165.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box" stylesheets="@style.css">
                      <children>
                         <Label layoutX="82.0" layoutY="69.0" text="ASIAKKAAT" textFill="WHITE">
                            <font>
@@ -252,7 +252,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="grid-title" stylesheets="@style.css">
+                        <Pane prefHeight="0.0" prefWidth="260.0" style="-fx-padding: 20px;" styleClass="rounded-box-top" stylesheets="@style.css">
                            <children>
                               <Label layoutX="78.0" layoutY="9.0" text="LENTOKONE" textFill="WHITE">
                                  <font>
