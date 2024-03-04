@@ -132,7 +132,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                        <Label fx:id="checkin_lukum" layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
@@ -155,7 +155,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                        <Label fx:id="tarkastus_lukum" layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
@@ -178,7 +178,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                        <Label fx:id="aula_lukum" layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
@@ -201,7 +201,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                        <Label fx:id="kauppa_lukum" layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
@@ -224,7 +224,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                        <Label fx:id="boarding_lukum" layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
@@ -247,7 +247,7 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
+                        <Label fx:id="lentokone_lukum" layoutX="125.0" layoutY="93.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
