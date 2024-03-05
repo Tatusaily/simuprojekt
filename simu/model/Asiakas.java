@@ -63,8 +63,8 @@ public class Asiakas implements Comparable<Asiakas> {
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui kentältä: " +poistumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi kentällä: " +(poistumisaika-saapumisaika));
 		sum += (poistumisaika-saapumisaika);
-		double keskiarvo = sum/id; 
-		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
+		double keskiarvo = sum/id;
+		System.out.println(("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo));
 	}
 
 }

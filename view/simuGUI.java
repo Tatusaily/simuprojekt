@@ -87,7 +87,9 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     }
 
     @Override
-    public IVisualisointi getVisualisointi() {
+    public IVisualisointi handleSimulationTime() {
         return null;
     }
+
+
 }
