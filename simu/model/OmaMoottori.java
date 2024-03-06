@@ -70,5 +70,9 @@ public class OmaMoottori extends Moottori{
 		System.out.println("Tulokset ... puuttuvat vielä");
 	}
 
-	
+
+	@Override
+	public void lopeta() {
+		this.endbutton = true;
+	}
 }

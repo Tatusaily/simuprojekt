@@ -7,4 +7,6 @@ public interface IKontrolleriForV {
     public void kaynnistaSimulointi();
     public void nopeuta();
     public void hidasta();
+
+    void lopetaSimulointi();
 }

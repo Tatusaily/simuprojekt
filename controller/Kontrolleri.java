@@ -52,14 +52,18 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 
 	// Moottorin ohjausta:
-
+	private Boolean simulointiKaynnissa = false;
 	@Override
 	public void kaynnistaSimulointi() {
 		moottori = new OmaMoottori(this); // luodaan uusi moottorisäie jokaista simulointia varten
 		moottori.setSimulointiaika(ui.getAika());
 		moottori.setViive(ui.getViive());
 		((Thread)moottori).start();
-		//((Thread)moottori).run(); // Ei missään tapauksessa näin. Miksi?
+		simulointiKaynnissa = true;
+	}
+	public void lopetaSimulointi() {
+		moottori.lopeta();
+		simulointiKaynnissa = false;
 	}
 
 	@Override

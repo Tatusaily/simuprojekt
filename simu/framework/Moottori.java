@@ -9,6 +9,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 	private long viive = 0;
 
 	private Kello kello;
+	protected Boolean endbutton = false;
 
 	protected Tapahtumalista tapahtumalista;
 
@@ -46,7 +47,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 	@Override
 	public void run(){ // Entinen aja()
 		alustukset(); // luodaan mm. ensimm√§inen tapahtuma
-		while (simuloidaan()){
+		while (simuloidaan() && !endbutton){
 			viive(); // UUSI
 			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());

@@ -27,30 +27,34 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         kontrolleri = new controller.Kontrolleri(this);
         // aloitellaan näkymä.
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("simuGUI.fxml")));
-        stage.setScene(new Scene(xml, 602, 400));
+        stage.setScene(new Scene(xml, 900, 600));
         stage.show();
         this.initializebuttons(); // napeille funktiot
     }
     private void initializebuttons(){
         Button startbutton = (Button) xml.lookup("#aloita");
-        startbutton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    kontrolleri.kaynnistaSimulointi();
-                    startbutton.setDisable(true);   // Lukitaan nappi kun simulointi on käynnissä (ei voi käynnistää kahta simulointia).
-                } catch (Exception e) {
-                    System.out.println("ERROR (START BUTTON) " + e);
-                }
-            }
-        });
-
         Button lopetabutton = (Button) xml.lookup("#stopnappi");
+        startbutton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                aloitaSimulointi();
+            }
+        });
         lopetabutton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                //TODO: lopeta simulointi napista
+            @Override
+            public void handle(ActionEvent event) {
+                lopetaSimulointi();
             }
         });
 
+    }
+    private void aloitaSimulointi() {
+        kontrolleri.kaynnistaSimulointi();
+        xml.lookup("#aloita").setDisable(true);
+    }
+    private void lopetaSimulointi() {
+        kontrolleri.lopetaSimulointi();
+        xml.lookup("#aloita").setDisable(false);
     }
 
     public void increment_asiakkaat() {
@@ -86,7 +90,4 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         tulos.setText(String.valueOf(aika));
     }
 
-    public IVisualisointi getVisualisointi() {
-        return null;
-    }
 }
