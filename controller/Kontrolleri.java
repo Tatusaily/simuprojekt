@@ -80,14 +80,9 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	// Simulointitulosten välittämistä käyttöliittymään.
 	// Koska FX-ui:n päivitykset tulevat moottorisäikeestä, ne pitää ohjata JavaFX-säikeeseen:
-
 	@Override
-	public void naytaLoppuaika(double aika) {
-		Platform.runLater(()->ui.setLoppuaika(aika));
-	}
-
-	public void updatecustomerCount(int asiakasLkm) {
-		Platform.runLater(()->ui.setAsiakasLkm(asiakasLkm));
+	public void increment_asiakkaat() {
+		Platform.runLater(()->ui.increment_asiakkaat());
 	}
 
 	public void updateaverageTime(double keskiaika) {
@@ -122,19 +117,4 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	public void LentokoneLukumaara(int lentokone_lukum) {
 		Platform.runLater(()->ui.LentokoneLukumaara(lentokone_lukum));
 	}
-
-	public void AsiakasKeskiarvo(int asiakas_keskiarvo) {
-		Platform.runLater(()->ui.AsiakasKeskiarvo(asiakas_keskiarvo));
-	}
-
-
-
-
-	/*@Override
-	public void visualisoiAsiakas() {
-		Platform.runLater(new Runnable(){
-			public void run(){
-				ui.getVisualisointi().uusiAsiakas();
-			}
-		});*/
 	}

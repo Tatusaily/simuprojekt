@@ -18,7 +18,6 @@ import java.util.Objects;
 
 public class simuGUI extends Application implements ISimulaattorinUI {
     private Parent xml;
-    //Kontrollerin esittely (tarvitaan käyttöliittymässä)
     private IKontrolleriForV kontrolleri;
 
     @Override
@@ -57,19 +56,60 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         xml.lookup("#aloita").setDisable(false);
     }
 
+    @Override
     public void increment_asiakkaat() {
         Label asiakkaat = (Label) xml.lookup("#asiakas_lkm");
         int i = Integer.parseInt(asiakkaat.getText());
         i++;
         asiakkaat.setText(String.valueOf(i));
     }
-    public void setkeskiarvo(double keskiarvo) {
-        Label keskiarvo_label = (Label) xml.lookup("#asiakas_keskiarvo");
-        keskiarvo_label.setText(String.valueOf(keskiarvo));
+
+    @Override
+    public void setKeskiaika(double keskiaika) {
+        Label keskiaika_label = (Label) xml.lookup("#asiakas_keskiarvo");
+        keskiaika_label.setText(String.valueOf(keskiaika));
     }
-    public void setkokonaisaika(int kokonaisaika) {
+
+    @Override
+    public void setKokonaisaika(double kokonaisaika) {
         Label kokonaisaika_label = (Label) xml.lookup("#kokonaisaika");
         kokonaisaika_label.setText(String.valueOf(kokonaisaika));
+    }
+
+    @Override
+    public void UpdateCheckinLukumaara(int checkin_lukum) {
+        Label checkin_lukum_label = (Label) xml.lookup("#checkin_lukum");
+        checkin_lukum_label.setText(String.valueOf(checkin_lukum));
+    }
+
+    @Override
+    public void UpdateTarkistusLukumaara(int tarkistus_lukum) {
+        Label tarkistus_lukum_label = (Label) xml.lookup("#tarkistus_lukum");
+        tarkistus_lukum_label.setText(String.valueOf(tarkistus_lukum));
+    }
+
+    @Override
+    public void AulaLukumaara(int aula_lukum) {
+        Label aula_lukum_label = (Label) xml.lookup("#aula_lukum");
+        aula_lukum_label.setText(String.valueOf(aula_lukum));
+    }
+
+    @Override
+    public void KauppaLukumaara(int kauppa_lukum) {
+        Label kauppa_lukum_label = (Label) xml.lookup("#kauppa_lukum");
+        kauppa_lukum_label.setText(String.valueOf(kauppa_lukum));
+    }
+
+    @Override
+    public void BoardingLukumaara(int boarding_lukum) {
+        Label boarding_lukum_label = (Label) xml.lookup("#boarding_lukum");
+        boarding_lukum_label.setText(String.valueOf(boarding_lukum));
+    }
+
+    @Override
+    public void LentokoneLukumaara(int lentokone_lukum) {
+        Label lentokone_lukum_label = (Label) xml.lookup("#lentokone_lukum");
+        lentokone_lukum_label.setText(String.valueOf(lentokone_lukum));
     }
 
     @Override
@@ -82,12 +122,6 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     public long getViive() {
         Slider viive = (Slider) xml.lookup("#nopeusarvo");
         return (long) viive.getValue();
-    }
-
-    @Override
-    public void setLoppuaika(double aika) {
-        Label tulos = (Label) xml.lookup("#tulos");
-        tulos.setText(String.valueOf(aika));
     }
 
 }

@@ -4,12 +4,11 @@ import controller.IKontrolleriForM;
 import simu.framework.*;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
-import view.simuGUI;
 
 public class OmaMoottori extends Moottori{
-	private Saapumisprosessi saapumisprosessi;
+	private final Saapumisprosessi saapumisprosessi;
 
-	private Palvelupiste[] palvelupisteet;
+	private final Palvelupiste[] palvelupisteet;
 
 	public OmaMoottori(IKontrolleriForM kontrolleri){
 		super(kontrolleri);
@@ -37,7 +36,7 @@ public class OmaMoottori extends Moottori{
 
 			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
 				saapumisprosessi.generoiSeuraava();	// ARR1 luo aina uuden ARR1 tapahtuman.
-				// kontrolleri.visualisoiAsiakas(); // TÄÄ VOIDAAN OTTAA SITTEN KUN ON CANVAS
+				kontrolleri.increment_asiakkaat();
 				break;
 
 			case POISTU_CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
