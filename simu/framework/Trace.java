@@ -4,7 +4,7 @@ public class Trace {
 
 	public enum Level{INFO, WAR, ERR}
 	
-	private static Level traceLevel = Level.INFO;
+	private static Level traceLevel = Level.WAR;
 	
 	public static void setTraceLevel(Level lvl){
 		traceLevel = lvl;

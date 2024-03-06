@@ -1,5 +1,7 @@
 package view;
 
+import java.util.HashMap;
+
 public interface ISimulaattorinUI {
 	
 	// Kontrolleri tarvitsee syötteitä, jotka se välittää Moottorille
@@ -17,5 +19,8 @@ public interface ISimulaattorinUI {
 	 void AulaLukumaara(int aula_lukum); // Aula lukumäärä
 	 void KauppaLukumaara(int kauppa_lukum); // Kauppa lukumäärä
 	 void BoardingLukumaara(int boarding_lukum); // Boarding lukumäärä
-	 void LentokoneLukumaara(int lentokone_lukum); // Lentokone lukumäärä
+
+	void updateAll(HashMap<String, Integer> mappi);
+
+	void increment_lentokone();
 }

@@ -10,6 +10,8 @@ import simu.framework.IMoottori;
 import simu.model.OmaMoottori;
 import view.ISimulaattorinUI;
 
+import java.util.HashMap;
+
 public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	@FXML
@@ -85,6 +87,16 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 		Platform.runLater(()->ui.increment_asiakkaat());
 	}
 
+	@Override
+	public void updateAll(HashMap<String, Integer> mappi) {
+		Platform.runLater(()->ui.updateAll(mappi));
+	}
+
+	@Override
+	public void increment_lentokone() {
+		Platform.runLater(()->ui.increment_lentokone());
+	}
+
 	public void updateaverageTime(double keskiaika) {
 		Platform.runLater(()->ui.setKeskiaika(keskiaika));
 	}
@@ -113,8 +125,4 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	public void BoardingLukumaara(int boarding_lukum) {
 		Platform.runLater(()->ui.BoardingLukumaara(boarding_lukum));
 	}
-
-	public void LentokoneLukumaara(int lentokone_lukum) {
-		Platform.runLater(()->ui.LentokoneLukumaara(lentokone_lukum));
-	}
-	}
+}

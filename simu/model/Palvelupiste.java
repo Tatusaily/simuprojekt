@@ -45,7 +45,6 @@ public class Palvelupiste {
 	public void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
 
 		Asiakas seuraava = jono.peek();
-		// TODO Asiakkaan kävelyajan erottelu palveluajasta fiksusti
 		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + seuraava.getId());
 		
 		varattu = true;

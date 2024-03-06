@@ -14,6 +14,7 @@ import simu.framework.Trace.Level;
 import simu.model.OmaMoottori;
 import simu.framework.Moottori;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class simuGUI extends Application implements ISimulaattorinUI {
@@ -84,7 +85,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
 
     @Override
     public void UpdateTarkistusLukumaara(int tarkistus_lukum) {
-        Label tarkistus_lukum_label = (Label) xml.lookup("#tarkistus_lukum");
+        Label tarkistus_lukum_label = (Label) xml.lookup("#tarkastus_lukum");
         tarkistus_lukum_label.setText(String.valueOf(tarkistus_lukum));
     }
 
@@ -107,9 +108,34 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     }
 
     @Override
-    public void LentokoneLukumaara(int lentokone_lukum) {
+    public void increment_lentokone() {
         Label lentokone_lukum_label = (Label) xml.lookup("#lentokone_lukum");
-        lentokone_lukum_label.setText(String.valueOf(lentokone_lukum));
+        int i = Integer.parseInt(lentokone_lukum_label.getText());
+        i++;
+        lentokone_lukum_label.setText(String.valueOf(i));
+    }
+
+    @Override
+    public void updateAll(HashMap<String, Integer> mappi) {
+        for (String key : mappi.keySet()) {
+            switch (key){
+                case "KAUPPA":
+                    KauppaLukumaara(mappi.get(key));
+                    break;
+                case "AULA":
+                    AulaLukumaara(mappi.get(key));
+                    break;
+                case "CHECK-IN":
+                    UpdateCheckinLukumaara(mappi.get(key));
+                    break;
+                case "TARKISTUS":
+                    UpdateTarkistusLukumaara(mappi.get(key));
+                    break;
+                case "BOARDING":
+                    BoardingLukumaara(mappi.get(key));
+                    break;
+            }
+        }
     }
 
     @Override

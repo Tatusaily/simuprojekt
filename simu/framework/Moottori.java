@@ -3,6 +3,8 @@ package simu.framework;
 
 import controller.IKontrolleriForM; // UUSI
 
+import java.util.HashMap;
+
 public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√Ñ√ÑRITYKSET
 
 	private double simulointiaika = 0;
@@ -48,6 +50,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 	public void run(){ // Entinen aja()
 		alustukset(); // luodaan mm. ensimm√§inen tapahtuma
 		while (simuloidaan() && !endbutton){
+			sendTapahtuma();
 			viive(); // UUSI
 			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());
@@ -58,6 +61,12 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 		}
 		tulokset();
 
+	}
+
+	private void sendTapahtuma() {
+		HashMap<String, Integer> mappi = tapahtumalista.getTapahtumat();
+		System.out.println("Tapahtumat: " + mappi.toString());
+		kontrolleri.updateAll(mappi);
 	}
 
 	private void suoritaBTapahtumat(){
