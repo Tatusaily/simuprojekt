@@ -86,10 +86,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         tulos.setText(String.valueOf(aika));
     }
 
-    @Override
-    public IVisualisointi handleSimulationTime() {
+    public IVisualisointi getVisualisointi() {
         return null;
     }
-
-
 }
