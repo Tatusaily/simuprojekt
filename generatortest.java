@@ -1,6 +1,5 @@
-import eduni.distributions.ContinuousGenerator;
-import eduni.distributions.Generator;
-import eduni.distributions.Normal;
+import distributions.ContinuousGenerator;
+import distributions.Normal;
 
 public class generatortest {
     public static void main(String[] args) {
