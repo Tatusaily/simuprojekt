@@ -146,5 +146,5 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         Slider viive = (Slider) xml.lookup("#nopeusarvo");
         return (long) viive.getValue();
     }
-
 }
+
