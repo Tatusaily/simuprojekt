@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -31,6 +32,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     private void initializebuttons(){
         Button startbutton = (Button) xml.lookup("#aloita");
         Button lopetabutton = (Button) xml.lookup("#stopnappi");
+        Button simutiedot = (Button) xml.lookup("#simutiedot");
         startbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -44,6 +46,29 @@ public class simuGUI extends Application implements ISimulaattorinUI {
             }
         });
 
+        // Simulaation tulokset uudessa ikkunassa
+        simutiedot.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    // Create a new FXMLLoader
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/tuloksetGUI.fxml"));
+                    // Set the controller to the existing one
+                    fxmlLoader.setController(kontrolleri);
+                    // Load the FXML file
+                    Parent tuloksetRoot = fxmlLoader.load();
+                    // Create a new stage
+                    Stage tuloksetStage = new Stage();
+                    // Set the scene to the new stage
+                    tuloksetStage.setScene(new Scene(tuloksetRoot));
+                    // Show the new stage
+                    tuloksetStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
     private void aloitaSimulointi() {
         kontrolleri.kaynnistaSimulointi();
@@ -53,6 +78,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         kontrolleri.lopetaSimulointi();
         xml.lookup("#aloita").setDisable(false);
     }
+
 
     @Override
     public void increment_asiakkaat() {

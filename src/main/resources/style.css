@@ -45,6 +45,15 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
+.button {
+    -fx-background-color: #39384b;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
 
 .button-stop {
     -fx-background-color: #39384b;
@@ -64,6 +73,17 @@
     -fx-background-radius: 20px;
     -fx-border-style: solid;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.button:hover {
+    -fx-background-color: #39384b;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #ffffff, 10, 0, 0, 0);
 }
 
 .button-stop:hover {
