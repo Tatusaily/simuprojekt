@@ -35,6 +35,16 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
+.rounded-box-bottom {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 0px 0px 20px 20px;
+    -fx-background-radius: 0px 0px 20px 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
 
 .button-stop {
     -fx-background-color: #39384b;
