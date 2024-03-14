@@ -53,7 +53,6 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 	public void run(){ // Entinen aja()
 		alustukset(); // luodaan mm. ensimmÃ¤inen tapahtuma
 		while (simuloidaan() && !endbutton){
-			sendTapahtuma();
 			checkBoarding();
 			viive(); // UUSI
 			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
@@ -67,16 +66,11 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 
 	}
 
+
 	private void checkBoarding() {
 		if(kello.getAika() >= boardingAika){
 			boardingOpen = true;
 		}
-	}
-
-	private void sendTapahtuma() {
-		HashMap<String, Integer> mappi = tapahtumalista.getTapahtumat();
-		System.out.println("Tapahtumat: " + mappi.toString());
-		kontrolleri.updateAll(mappi);
 	}
 
 	private void suoritaBTapahtumat(){

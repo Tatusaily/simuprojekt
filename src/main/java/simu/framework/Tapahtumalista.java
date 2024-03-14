@@ -30,6 +30,7 @@ public class Tapahtumalista {
 	}
 	public HashMap<String, Integer> getTapahtumat(){
 		HashMap<String, Integer> tapahtumat = new HashMap<>();
+		System.out.println(lista.toString());
 		for (Tapahtuma t : lista){
 			String tyyppi = t.getTyyppi().toString();
 			if (tapahtumat.containsKey(tyyppi)){

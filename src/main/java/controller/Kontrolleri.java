@@ -89,6 +89,7 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	@Override
 	public void updateAll(HashMap<String, Integer> mappi) {
+		System.out.println(mappi.toString());
 		Platform.runLater(()->ui.updateAll(mappi));
 	}
 

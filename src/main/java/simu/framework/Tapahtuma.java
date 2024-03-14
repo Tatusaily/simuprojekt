@@ -24,4 +24,11 @@ public class Tapahtuma implements Comparable<Tapahtuma> {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+		return "Tapahtuma{" +
+				"tyyppi=" + tyyppi +
+				", aika=" + aika +
+				'}';
+	}
 }

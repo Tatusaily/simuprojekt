@@ -116,19 +116,17 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     @Override
     public void updateAll(HashMap<String, Integer> mappi) {
         for (String key : mappi.keySet()) {
-            switch (key){
-                case "ARRIVE":
-
+            switch (key.toUpperCase()){
                 case "KAUPPA":
                     KauppaLukumaara(mappi.get(key));
                     break;
                 case "AULA":
                     AulaLukumaara(mappi.get(key));
                     break;
-                case "CHECKIN":
+                case "CHECK-IN":
                     UpdateCheckinLukumaara(mappi.get(key));
                     break;
-                case "TARKISTUS":
+                case "TURVATARKASTUS":
                     UpdateTarkistusLukumaara(mappi.get(key));
                     break;
                 case "BOARDING":

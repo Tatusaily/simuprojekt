@@ -5,29 +5,30 @@ import simu.framework.*;
 import distributions.Negexp;
 import distributions.Normal;
 
+import java.util.HashMap;
+
 public class OmaMoottori extends Moottori{
 	private final Saapumisprosessi saapumisprosessi;
 	private final Palvelupiste[] palvelupisteet;
+	private HashMap<String, Integer> jonot = new HashMap<>();
 
 	public OmaMoottori(IKontrolleriForM kontrolleri){
 		super(kontrolleri);
 		palvelupisteet = new Palvelupiste[5];
-		palvelupisteet[0]=new Palvelupiste(new Normal(10,6), tapahtumalista, TapahtumanTyyppi.CHECKIN, "Check-in");
-		palvelupisteet[1]=new Palvelupiste(new Normal(10,10), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
-		palvelupisteet[2]=new Palvelupiste(new Normal(5,3), tapahtumalista, TapahtumanTyyppi.BOARDING, "Boarding");
-		palvelupisteet[3]=new Palvelupiste(new Negexp(5,10), tapahtumalista, TapahtumanTyyppi.AULA, "Aula");
-		palvelupisteet[4]=new Palvelupiste(new Negexp(5,10), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
+		palvelupisteet[0]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.CHECKIN, "Check-in");
+		palvelupisteet[1]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
+		palvelupisteet[2]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.BOARDING, "Boarding");
+		palvelupisteet[3]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.AULA, "Aula");
+		palvelupisteet[4]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
 
-		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
+		saapumisprosessi = new Saapumisprosessi(new Negexp(1,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
 
 	}
 
 
 	@Override
 	protected void alustukset() {
-		for (int i = 0; i < 10; i++) {			// Tehdään 10 asiakasta alkuun.
-			saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
-		}
+		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
 	}
 
 	@Override
@@ -66,6 +67,14 @@ public class OmaMoottori extends Moottori{
 			           a.raportti();
 					   kontrolleri.increment_lentokone();
 		}
+		updatequeues();
+	}
+
+	private void updatequeues() {
+		for (Palvelupiste p: palvelupisteet){
+			jonot.put(p.getNimi(), p.getJononKoko());
+		}
+		kontrolleri.updateAll(jonot);
 	}
 
 	@Override
