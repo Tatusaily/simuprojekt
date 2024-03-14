@@ -26,6 +26,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         // aloitellaan näkymä.
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/simuGUI.fxml")));
         stage.setScene(new Scene(xml, 900, 600));
+        stage.setTitle("Lentokenttäsimulaattori");
         stage.show();
         this.initializebuttons(); // napeille funktiot
     }
@@ -46,28 +47,30 @@ public class simuGUI extends Application implements ISimulaattorinUI {
             }
         });
 
-        // Simulaation tulokset uudessa ikkunassa
+        // Nappi, joka avaa uuden ikkunan, jossa näkyy simuloinnin tulokset
         simutiedot.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    // Create a new FXMLLoader
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/tuloksetGUI.fxml"));
-                    // Set the controller to the existing one
+                    // Kontrollerin asettaminen uudelle ikkunalle
                     fxmlLoader.setController(kontrolleri);
-                    // Load the FXML file
+                    // Ladataan fxml-tiedosto
                     Parent tuloksetRoot = fxmlLoader.load();
-                    // Create a new stage
+                    // Luodaan uusi stage
                     Stage tuloksetStage = new Stage();
-                    // Set the scene to the new stage
+                    // Asennetaan uusi näkymä ja otsikko stageen
                     tuloksetStage.setScene(new Scene(tuloksetRoot));
-                    // Show the new stage
+                    tuloksetStage.setTitle("Simuloinnin tulokset");
+                    // Näytetään uusi stage
                     tuloksetStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+
+        // TODO: Boarding aukeaminen
 
     }
     private void aloitaSimulointi() {
