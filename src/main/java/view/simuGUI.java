@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,6 +28,9 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/simuGUI.fxml")));
         stage.setScene(new Scene(xml, 900, 600));
         stage.setTitle("Lentokenttäsimulaattori");
+        // Ikoni ikkunan "title bariin"
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/src/main/resources/icon.png")));
+        stage.getIcons().add(icon);
         stage.show();
         this.initializebuttons(); // napeille funktiot
     }
@@ -59,9 +63,12 @@ public class simuGUI extends Application implements ISimulaattorinUI {
                     Parent tuloksetRoot = fxmlLoader.load();
                     // Luodaan uusi stage
                     Stage tuloksetStage = new Stage();
-                    // Asennetaan uusi näkymä ja otsikko stageen
+                    // Uusi näkymä ja otsikko stageen
                     tuloksetStage.setScene(new Scene(tuloksetRoot));
                     tuloksetStage.setTitle("Simuloinnin tulokset");
+                    // Ikoni ikkunan "title bariin"
+                    Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/src/main/resources/icon.png")));
+                    tuloksetStage.getIcons().add(icon);
                     // Näytetään uusi stage
                     tuloksetStage.show();
                 } catch (IOException e) {
