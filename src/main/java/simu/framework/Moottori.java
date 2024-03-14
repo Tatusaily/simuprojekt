@@ -12,10 +12,12 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 
 	private Kello kello;
 	protected Boolean endbutton = false;
+	protected Boolean boardingOpen = false;
+	private double boardingAika = 0;
 
 	protected Tapahtumalista tapahtumalista;
 
-	protected IKontrolleriForM kontrolleri; // UUSI
+	protected IKontrolleriForM kontrolleri;
 
 
 	public Moottori(IKontrolleriForM kontrolleri){  // UUSITTU
@@ -35,6 +37,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 	public void setSimulointiaika(double aika) {
 		simulointiaika = aika;
 	}
+	public void setBoardingAika(double aika){boardingAika = aika;}
 
 	@Override // UUSI
 	public void setViive(long viive) {
@@ -51,6 +54,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 		alustukset(); // luodaan mm. ensimmÃ¤inen tapahtuma
 		while (simuloidaan() && !endbutton){
 			sendTapahtuma();
+			checkBoarding();
 			viive(); // UUSI
 			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());
@@ -61,6 +65,12 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 		}
 		tulokset();
 
+	}
+
+	private void checkBoarding() {
+		if(kello.getAika() >= boardingAika){
+			boardingOpen = true;
+		}
 	}
 
 	private void sendTapahtuma() {

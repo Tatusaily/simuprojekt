@@ -8,7 +8,6 @@ import distributions.Normal;
 public class OmaMoottori extends Moottori{
 	private final Saapumisprosessi saapumisprosessi;
 	private final Palvelupiste[] palvelupisteet;
-	private boolean BoardingOpen = false;
 
 	public OmaMoottori(IKontrolleriForM kontrolleri){
 		super(kontrolleri);
@@ -26,22 +25,22 @@ public class OmaMoottori extends Moottori{
 
 	@Override
 	protected void alustukset() {
-		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
+		for (int i = 0; i < 10; i++) {			// Tehdään 10 asiakasta alkuun.
+			saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
+		}
 	}
 
 	@Override
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 		// TODO Boarding aukeaminen
 		Asiakas a;
-		switch ((TapahtumanTyyppi)t.getTyyppi()){	    // Asiakkaat menee jonoon
-														// TODO laita asiakas myöhemmin jonoon kävelynopeuden perusteella (ONKO TEHTY?)
-
-			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
-				saapumisprosessi.generoiSeuraava();	// ARR1 luo aina uuden ARR1 tapahtuman.
+		switch ((TapahtumanTyyppi)t.getTyyppi()){
+			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());	// Arrive -> Check-in
+				saapumisprosessi.generoiSeuraava();
 				kontrolleri.increment_asiakkaat();
 				break;
 
-			case CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
+			case CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();	// Check-in -> Tarkistus
 				   	   palvelupisteet[1].lisaaJonoon(a);
 				break;
 
@@ -50,7 +49,7 @@ public class OmaMoottori extends Moottori{
 				break;
 			case AULA:
 				a = (Asiakas)palvelupisteet[3].otaJonosta();
-				if (BoardingOpen) {
+				if (boardingOpen) {
 					palvelupisteet[2].lisaaJonoon(a); // Aulasta boardingiin
 				} else {
 					// Jos Boarding ei ole avoinna -> ohjaa kauppaan
@@ -88,9 +87,5 @@ public class OmaMoottori extends Moottori{
 	@Override
 	public void lopeta() {
 		this.endbutton = true;
-	}
-	public void avaaBoarding() {
-		System.out.println("Boarding avattu");
-		BoardingOpen = true;
 	}
 }

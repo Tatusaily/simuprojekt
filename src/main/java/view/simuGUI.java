@@ -112,17 +112,20 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         lentokone_lukum_label.setText(String.valueOf(i));
     }
 
+
     @Override
     public void updateAll(HashMap<String, Integer> mappi) {
         for (String key : mappi.keySet()) {
             switch (key){
+                case "ARRIVE":
+
                 case "KAUPPA":
                     KauppaLukumaara(mappi.get(key));
                     break;
                 case "AULA":
                     AulaLukumaara(mappi.get(key));
                     break;
-                case "CHECK-IN":
+                case "CHECKIN":
                     UpdateCheckinLukumaara(mappi.get(key));
                     break;
                 case "TARKISTUS":
