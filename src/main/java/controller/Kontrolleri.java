@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.Parent;
 import simu.framework.IMoottori;
 import simu.model.OmaMoottori;
 import view.ISimulaattorinUI;
@@ -47,9 +48,11 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	private IMoottori moottori;
 	private ISimulaattorinUI ui;
 
-	public Kontrolleri(ISimulaattorinUI ui) {
-		this.ui = ui;
+	private Parent tuloksetRoot;
 
+	public Kontrolleri(ISimulaattorinUI ui, Parent tuloksetRoot) {
+		this.ui = ui;
+		this.tuloksetRoot = tuloksetRoot;
 	}
 
 
@@ -57,7 +60,7 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	private Boolean simulointiKaynnissa = false;
 	@Override
 	public void kaynnistaSimulointi() {
-		moottori = new OmaMoottori(this); // luodaan uusi moottorisäie jokaista simulointia varten
+		moottori = new OmaMoottori(this, tuloksetRoot);
 		moottori.setSimulointiaika(ui.getAika());
 		moottori.setViive(ui.getViive());
 		((Thread)moottori).start();
@@ -83,8 +86,8 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	// Simulointitulosten välittämistä käyttöliittymään.
 	// Koska FX-ui:n päivitykset tulevat moottorisäikeestä, ne pitää ohjata JavaFX-säikeeseen:
 	@Override
-	public void increment_asiakkaat() {
-		Platform.runLater(()->ui.increment_asiakkaat());
+	public void increment_asiakkaat(Parent tuloksetRoot) {
+		Platform.runLater(()->ui.increment_asiakkaat(tuloksetRoot));
 	}
 
 	@Override
@@ -97,12 +100,12 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 		Platform.runLater(()->ui.increment_lentokone());
 	}
 
-	public void updateaverageTime(double keskiaika) {
-		Platform.runLater(()->ui.setKeskiaika(keskiaika));
+	public void updateaverageTime(double keskiaika, Parent tuloksetRoot) {
+		Platform.runLater(()->ui.setKeskiaika(keskiaika, tuloksetRoot));
 	}
 
-	public void totaltime(double kokonaisaika) {
-		Platform.runLater(()->ui.setKokonaisaika(kokonaisaika));
+	public void totaltime(double kokonaisaika, Parent tuloksetRoot) {
+		Platform.runLater(()->ui.setKokonaisaika(kokonaisaika, tuloksetRoot));
 	}
 
 	public void UpdateCheckinLukumaara(int checkin_lukum) {

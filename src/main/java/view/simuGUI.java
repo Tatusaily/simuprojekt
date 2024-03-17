@@ -19,13 +19,15 @@ import java.util.Objects;
 public class simuGUI extends Application implements ISimulaattorinUI {
     private Parent xml;
     private IKontrolleriForV kontrolleri;
+    @FXML
+    private Label asiakkaat; // Label, joka näyttää asiakkaiden lukumäärän tulosikkunassa
 
     @Override
     public void start(Stage stage) throws Exception {
         // Kontrollerin luonti
-        kontrolleri = new controller.Kontrolleri(this);
-        // aloitellaan näkymä.
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/simuGUI.fxml")));
+        kontrolleri = new controller.Kontrolleri(this, xml);
+        // aloitellaan näkymä.
         stage.setScene(new Scene(xml, 900, 600));
         stage.setTitle("Lentokenttäsimulaattori");
         // Ikoni ikkunan "title bariin"
@@ -57,20 +59,17 @@ public class simuGUI extends Application implements ISimulaattorinUI {
             public void handle(ActionEvent event) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/tuloksetGUI.fxml"));
-                    // Kontrollerin asettaminen uudelle ikkunalle
                     fxmlLoader.setController(kontrolleri);
-                    // Ladataan fxml-tiedosto
                     Parent tuloksetRoot = fxmlLoader.load();
-                    // Luodaan uusi stage
                     Stage tuloksetStage = new Stage();
-                    // Uusi näkymä ja otsikko stageen
                     tuloksetStage.setScene(new Scene(tuloksetRoot));
                     tuloksetStage.setTitle("Simuloinnin tulokset");
-                    // Ikoni ikkunan "title bariin"
-                    Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/src/main/resources/icon.png")));
+                    Image icon = new Image(getClass().getResourceAsStream("/src/main/resources/icon.png"));
                     tuloksetStage.getIcons().add(icon);
-                    // Näytetään uusi stage
                     tuloksetStage.show();
+                    increment_asiakkaat(tuloksetRoot);
+                    setKeskiaika(0.0, tuloksetRoot);
+                    setKokonaisaika(0.0, tuloksetRoot);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -91,22 +90,23 @@ public class simuGUI extends Application implements ISimulaattorinUI {
 
 
     @Override
-    public void increment_asiakkaat() {
-        Label asiakkaat = (Label) xml.lookup("#asiakas_lkm");
-        int i = Integer.parseInt(asiakkaat.getText());
-        i++;
-        asiakkaat.setText(String.valueOf(i));
+    public void increment_asiakkaat(Parent tuloksetRoot) {
+        if (asiakkaat != null) { // Tarkistetaan, että label asiakkaat on olemassa, koska molemmilla ikkunoilla sama kontolleri ja vain toisessa label.
+            int i = Integer.parseInt(asiakkaat.getText());
+            i++;
+            asiakkaat.setText(String.valueOf(i));
+        }
     }
 
     @Override
-    public void setKeskiaika(double keskiaika) {
-        Label keskiaika_label = (Label) xml.lookup("#asiakas_keskiarvo");
+    public void setKeskiaika(double keskiaika, Parent tuloksetRoot) {
+        Label keskiaika_label = (Label) tuloksetRoot.lookup("#asiakas_keskiarvo");
         keskiaika_label.setText(String.valueOf(keskiaika));
     }
 
     @Override
-    public void setKokonaisaika(double kokonaisaika) {
-        Label kokonaisaika_label = (Label) xml.lookup("#kokonaisaika");
+    public void setKokonaisaika(double kokonaisaika, Parent tuloksetRoot) {
+        Label kokonaisaika_label = (Label) tuloksetRoot.lookup("#kokonaisaika");
         kokonaisaika_label.setText(String.valueOf(kokonaisaika));
     }
 

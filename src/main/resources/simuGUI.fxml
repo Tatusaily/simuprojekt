@@ -30,7 +30,7 @@
                         </Pane>
                         <Pane layoutX="2.0" layoutY="14.0" prefHeight="112.0" prefWidth="215.0">
                            <children>
-                              <TextField fx:id="simulointiaika" alignment="CENTER" layoutX="33.0" layoutY="73.0" promptText="SIMULAATION PITUUS" />
+                              <TextField fx:id="simulointiaika" alignment="CENTER" layoutX="33.0" layoutY="73.0" />
                               <Label layoutX="79.0" layoutY="43.0" text="PITUUS" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
@@ -40,7 +40,7 @@
                         </Pane>
                         <Pane layoutY="82.0" prefHeight="112.0" prefWidth="215.0">
                            <children>
-                              <TextField fx:id="boardingaika" alignment="CENTER" layoutX="33.0" layoutY="73.0" promptText="AUKEAMISEN AIKA" />
+                              <TextField fx:id="boardingaika" alignment="CENTER" layoutX="33.0" layoutY="73.0" />
                               <Label layoutX="61.0" layoutY="43.0" text="BOARDING" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
