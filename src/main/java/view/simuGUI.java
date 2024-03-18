@@ -76,8 +76,6 @@ public class simuGUI extends Application implements ISimulaattorinUI {
             }
         });
 
-        // TODO: Boarding aukeaminen
-
     }
     private void aloitaSimulointi() {
         kontrolleri.kaynnistaSimulointi();
@@ -146,6 +144,12 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         int i = Integer.parseInt(lentokone_lukum_label.getText());
         i++;
         lentokone_lukum_label.setText(String.valueOf(i));
+    }
+
+    @Override
+    public double getBoardingAika() {
+        TextField boardingaika = (TextField) xml.lookup("#boardingaika");
+        return Double.parseDouble(boardingaika.getText());
     }
 
 

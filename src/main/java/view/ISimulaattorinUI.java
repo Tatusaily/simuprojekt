@@ -24,4 +24,6 @@ public interface ISimulaattorinUI {
 	void updateAll(HashMap<String, Integer> mappi);
 
 	void increment_lentokone();
+
+    double getBoardingAika();
 }

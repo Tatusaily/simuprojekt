@@ -13,7 +13,7 @@ import view.ISimulaattorinUI;
 
 import java.util.HashMap;
 
-public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
+public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV {
 
 	@FXML
 	private TextField simulointiaika;
@@ -43,8 +43,6 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	private Label lentokone_lukum;
 
 
-
-
 	private IMoottori moottori;
 	private ISimulaattorinUI ui;
 
@@ -58,12 +56,14 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	// Moottorin ohjausta:
 	private Boolean simulointiKaynnissa = false;
+
 	@Override
 	public void kaynnistaSimulointi() {
 		if (moottori == null) {
-			moottori = new OmaMoottori(this, tuloksetRoot);	// luodaan uusi moottorisäie jokaista simulointia varten
+			moottori = new OmaMoottori(this, tuloksetRoot);    // luodaan uusi moottorisäie jokaista simulointia varten
+			moottori.setBoardingAika(ui.getBoardingAika());
 		}
-		if (simulointiKaynnissa){
+		if (simulointiKaynnissa) {
 			moottori.toggleEndButton();
 		} else {
 			moottori.setViive(ui.getViive());
@@ -72,6 +72,7 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 			simulointiKaynnissa = true;
 		}
 	}
+
 	public void lopetaSimulointi() {
 		moottori.toggleEndButton();
 		simulointiKaynnissa = false;
@@ -79,60 +80,38 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	@Override
 	public void hidasta() { // hidastetaan moottorisäiettä
-		moottori.setViive((long)(moottori.getViive()*1.10));
+		moottori.setViive((long) (moottori.getViive() * 1.10));
 	}
 
 	@Override
 	public void nopeuta() { // nopeutetaan moottorisäiettä
-		moottori.setViive((long)(moottori.getViive()*0.9));
+		moottori.setViive((long) (moottori.getViive() * 0.9));
 	}
-
 
 
 	// Simulointitulosten välittämistä käyttöliittymään.
 	// Koska FX-ui:n päivitykset tulevat moottorisäikeestä, ne pitää ohjata JavaFX-säikeeseen:
 	@Override
 	public void increment_asiakkaat(Parent tuloksetRoot) {
-		Platform.runLater(()->ui.increment_asiakkaat(tuloksetRoot));
+		Platform.runLater(() -> ui.increment_asiakkaat(tuloksetRoot));
 	}
 
 	@Override
 	public void updateAll(HashMap<String, Integer> mappi) {
 		System.out.println(mappi.toString());
-		Platform.runLater(()->ui.updateAll(mappi));
+		Platform.runLater(() -> ui.updateAll(mappi));
 	}
 
 	@Override
 	public void increment_lentokone() {
-		Platform.runLater(()->ui.increment_lentokone());
+		Platform.runLater(() -> ui.increment_lentokone());
 	}
 
 	public void updateaverageTime(double keskiaika, Parent tuloksetRoot) {
-		Platform.runLater(()->ui.setKeskiaika(keskiaika, tuloksetRoot));
+		Platform.runLater(() -> ui.setKeskiaika(keskiaika, tuloksetRoot));
 	}
 
 	public void totaltime(double kokonaisaika, Parent tuloksetRoot) {
-		Platform.runLater(()->ui.setKokonaisaika(kokonaisaika, tuloksetRoot));
-	}
-
-	public void UpdateCheckinLukumaara(int checkin_lukum) {
-		Platform.runLater(()->ui.UpdateCheckinLukumaara(checkin_lukum));
-	}
-
-	public void TarkistusLukumaara(int tarkistus_lukum) {
-		Platform.runLater(()->ui.UpdateTarkistusLukumaara(tarkistus_lukum));
-	}
-
-
-	public void AulaLukumaara(int aula_lukum) {
-		Platform.runLater(()->ui.AulaLukumaara(aula_lukum));
-	}
-
-	public void KauppaLukumaara(int kauppa_lukum) {
-		Platform.runLater(()->ui.KauppaLukumaara(kauppa_lukum));
-	}
-
-	public void BoardingLukumaara(int boarding_lukum) {
-		Platform.runLater(()->ui.BoardingLukumaara(boarding_lukum));
+		Platform.runLater(() -> ui.setKokonaisaika(kokonaisaika, tuloksetRoot));
 	}
 }

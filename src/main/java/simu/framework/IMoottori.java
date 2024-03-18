@@ -9,4 +9,6 @@ public interface IMoottori { // UUSI
 	public long getViive();
 
 	void toggleEndButton();
+
+    void setBoardingAika(double i);
 }

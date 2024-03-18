@@ -13,8 +13,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 	private Kello kello;
 	public Boolean endbutton = false;
 	protected Boolean boardingOpen = false;
-	private double boardingAika = 1000;
-
+	private double boardingAika;
 	protected Tapahtumalista tapahtumalista;
 
 	protected IKontrolleriForM kontrolleri;
