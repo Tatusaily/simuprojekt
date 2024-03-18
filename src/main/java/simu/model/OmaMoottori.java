@@ -4,38 +4,42 @@ import controller.IKontrolleriForM;
 import simu.framework.*;
 import distributions.Negexp;
 import distributions.Normal;
+import javafx.scene.Parent;
+
+import java.util.HashMap;
 
 public class OmaMoottori extends Moottori{
 	private final Saapumisprosessi saapumisprosessi;
 	private final Palvelupiste[] palvelupisteet;
+	private HashMap<String, Integer> jonot = new HashMap<>();
 	private boolean BoardingOpen = false;
+	private Parent tuloksetRoot; // new class variable
+
 
 	/**
 	 * Konstruktori luo uuden moottorin ja asettaa sille kontrollerin.
 	 * @param kontrolleri käytettävä kontrolleri
 	 * @param kontrolleri
 	 */
-
-	public OmaMoottori(IKontrolleriForM kontrolleri){
+	public OmaMoottori(IKontrolleriForM kontrolleri, Parent tuloksetRoot) {
 		super(kontrolleri);
+		this.tuloksetRoot = tuloksetRoot; // store the Parent object
 		palvelupisteet = new Palvelupiste[5];
-		palvelupisteet[0]=new Palvelupiste(new Normal(10,6), tapahtumalista, TapahtumanTyyppi.CHECKIN, "Check-in");
-		palvelupisteet[1]=new Palvelupiste(new Normal(10,10), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
-		palvelupisteet[2]=new Palvelupiste(new Normal(5,3), tapahtumalista, TapahtumanTyyppi.BOARDING, "Boarding");
-		palvelupisteet[3]=new Palvelupiste(new Negexp(5,10), tapahtumalista, TapahtumanTyyppi.AULA, "Aula");
-		palvelupisteet[4]=new Palvelupiste(new Negexp(5,10), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
+		palvelupisteet[0]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.CHECKIN, "Check-in");
+		palvelupisteet[1]=new Palvelupiste(new Normal(10,2), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
+		palvelupisteet[2]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.BOARDING, "Boarding");
+		palvelupisteet[3]=new Palvelupiste(new Normal(2,1), tapahtumalista, TapahtumanTyyppi.AULA, "Aula");
+		palvelupisteet[4]=new Palvelupiste(new Normal(2,1), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
 
-		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
-
+		saapumisprosessi = new Saapumisprosessi(new Negexp(1,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
 	}
 
 	/**
 	 * Ensimmäinen tapahtuma luodaan ja simulointi käynnistyy.
 	 */
-
 	@Override
 	protected void alustukset() {
-		saapumisprosessi.generoiSeuraava();
+		saapumisprosessi.generoiSeuraava(this); // Ensimmäinen saapuminen järjestelmään
 	}
 
 	/**
@@ -43,35 +47,33 @@ public class OmaMoottori extends Moottori{
 	 * Jokainen tapahtumatyyppi vastaa erilaista toimintoa simulaatiossa.
 	 * @param t suoritettava tapahtuma
 	 */
-
 	@Override
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 		// TODO Boarding aukeaminen
 		Asiakas a;
 		switch ((TapahtumanTyyppi)t.getTyyppi()){
-
-
-			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());
-				saapumisprosessi.generoiSeuraava();
-				kontrolleri.increment_asiakkaat();
+			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());	// Arrive -> Check-in
+				saapumisprosessi.generoiSeuraava(this);
+				kontrolleri.increment_asiakkaat(tuloksetRoot);
 				break;
 
-			case CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();
+			case CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();	// Check-in -> Tarkistus
 				   	   palvelupisteet[1].lisaaJonoon(a);
 				break;
 
 			case TARKISTUS: a = (Asiakas)palvelupisteet[1].otaJonosta();
 				   	   palvelupisteet[3].lisaaJonoon(a);
 				break;
+        
 			case AULA:
 				a = (Asiakas)palvelupisteet[3].otaJonosta();
-				if (BoardingOpen) {
-					palvelupisteet[2].lisaaJonoon(a);
+				if (checkBoarding()){
+					palvelupisteet[2].lisaaJonoon(a); // Aulasta boardingiin
 				} else {
-
 					palvelupisteet[4].lisaaJonoon(a);
 				}
 				break;
+        
 			case KAUPPA:
 				a = (Asiakas)palvelupisteet[4].otaJonosta();
 				palvelupisteet[3].lisaaJonoon(a);
@@ -80,8 +82,22 @@ public class OmaMoottori extends Moottori{
 				       a = (Asiakas)palvelupisteet[2].otaJonosta();
 					   a.setPoistumisaika(Kello.getInstance().getAika());
 			           a.raportti();
+					   kontrolleri.updateaverageTime(a.getKeskiarvo(), tuloksetRoot);
 					   kontrolleri.increment_lentokone();
 		}
+		updatequeues();
+	}
+
+	private void updatequeues() {
+		for (Palvelupiste p: palvelupisteet){
+			jonot.put(p.getNimi(), p.getJononKoko());
+		}
+		kontrolleri.updateAll(jonot);
+	}
+
+	@Override
+	protected void updateTime() {
+		kontrolleri.totalTime(Kello.getInstance().getAika());
 	}
 
 	/**
@@ -112,11 +128,11 @@ public class OmaMoottori extends Moottori{
 	 * Lopettaa simulaation.
 	 */
 	@Override
-	public void lopeta() {
-		this.endbutton = true;
+	public void toggleEndButton() {
+		this.endbutton = !this.endbutton;
 	}
-	public void avaaBoarding() {
-		System.out.println("Boarding avattu");
-		BoardingOpen = true;
+
+	public void increment_asiakkaat() {
+		kontrolleri.increment_asiakkaat(tuloksetRoot);
 	}
 }

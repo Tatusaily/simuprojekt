@@ -1,5 +1,6 @@
 package simu.framework;
 import distributions.ContinuousGenerator;
+import simu.model.OmaMoottori;
 
 public class Saapumisprosessi {
 	
@@ -13,9 +14,10 @@ public class Saapumisprosessi {
 		this.tyyppi = tyyppi;
 	}
 
-	public void generoiSeuraava(){
+	public void generoiSeuraava(OmaMoottori omaMoottori){
 		Tapahtuma t = new Tapahtuma(tyyppi, Kello.getInstance().getAika()+generaattori.sample());
 		tapahtumalista.lisaa(t);
+		omaMoottori.increment_asiakkaat();
 	}
 
 }

@@ -11,11 +11,12 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 	private long viive = 0;
 
 	private Kello kello;
-	protected Boolean endbutton = false;
-
+	public Boolean endbutton = false;
+	protected Boolean boardingOpen = false;
+	private double boardingAika;
 	protected Tapahtumalista tapahtumalista;
 
-	protected IKontrolleriForM kontrolleri; // UUSI
+	protected IKontrolleriForM kontrolleri;
 
 
 	public Moottori(IKontrolleriForM kontrolleri){  // UUSITTU
@@ -35,6 +36,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 	public void setSimulointiaika(double aika) {
 		simulointiaika = aika;
 	}
+	public void setBoardingAika(double aika){boardingAika = aika;}
 
 	@Override // UUSI
 	public void setViive(long viive) {
@@ -50,10 +52,11 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 	public void run(){ // Entinen aja()
 		alustukset(); // luodaan mm. ensimm√§inen tapahtuma
 		while (simuloidaan() && !endbutton){
-			sendTapahtuma();
+			checkBoarding();
 			viive(); // UUSI
 			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());
+			updateTime();
 			Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
 			suoritaBTapahtumat();
 			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
@@ -63,10 +66,11 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET M√
 
 	}
 
-	private void sendTapahtuma() {
-		HashMap<String, Integer> mappi = tapahtumalista.getTapahtumat();
-		System.out.println("Tapahtumat: " + mappi.toString());
-		kontrolleri.updateAll(mappi);
+	protected abstract void updateTime();
+
+
+	protected boolean checkBoarding() {
+		return kello.getAika() >= boardingAika;
 	}
 
 	private void suoritaBTapahtumat(){

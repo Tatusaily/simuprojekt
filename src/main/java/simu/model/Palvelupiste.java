@@ -35,7 +35,6 @@ public class Palvelupiste {
 		this.nimi = nimi;
 		this.generator = generator;
 		this.skeduloitavanTapahtumanTyyppi = tyyppi;
-				
 	}
 
 	/**
@@ -92,4 +91,11 @@ public class Palvelupiste {
 		return jono.size() != 0;
 	}
 
+	public Integer getJononKoko() {
+		return jono.size();
+	}
+
+	public String getNimi() {
+		return nimi;
+	}
 }

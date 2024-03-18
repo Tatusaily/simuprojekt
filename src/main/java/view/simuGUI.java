@@ -10,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -22,6 +24,10 @@ import java.util.Objects;
 public class simuGUI extends Application implements ISimulaattorinUI {
     private Parent xml;
     private IKontrolleriForV kontrolleri;
+    private Stage tuloksetStage;
+    private Parent tuloksetRoot;
+    @FXML
+    private Label asiakkaat; // Label, joka näyttää asiakkaiden lukumäärän tulosikkunassa
 
     /**
      * Käynnistää simulaattorin käyttöliittymän.
@@ -31,22 +37,36 @@ public class simuGUI extends Application implements ISimulaattorinUI {
      */
     @Override
     public void start(Stage stage) throws Exception {
-
-        kontrolleri = new controller.Kontrolleri(this);
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/simuGUI.fxml")));
+        this.tuloksetRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/tuloksetGUI.fxml")));
+        kontrolleri = new controller.Kontrolleri(this, tuloksetRoot);
+      
+        // aloitellaan näkymä.
         stage.setScene(new Scene(xml, 900, 600));
+        stage.setTitle("Lentokenttäsimulaattori");
+      
+        // Ikoni ikkunan "title bariin"
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/src/main/resources/icon.png")));
+        stage.getIcons().add(icon);
         stage.show();
-        this.initializebuttons();
+      
+        this.initializebuttons(); // napeille funktiot
+
+        // Tulosikkunan luonti
+        tuloksetStage = new Stage();
+        tuloksetStage.setScene(new Scene(tuloksetRoot));
+        tuloksetStage.setTitle("Simuloinnin tulokset");
+        tuloksetStage.getIcons().add(icon);
     }
 
     /**
      * Metodi alustaa napit.
      * Aloita painike käynnistää simulaation ja lopeta painike lopettaa simulaation.
      */
-
     private void initializebuttons(){
         Button startbutton = (Button) xml.lookup("#aloita");
         Button lopetabutton = (Button) xml.lookup("#stopnappi");
+        Button simutiedot = (Button) xml.lookup("#simutiedot");
         startbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -57,6 +77,29 @@ public class simuGUI extends Application implements ISimulaattorinUI {
             @Override
             public void handle(ActionEvent event) {
                 lopetaSimulointi();
+            }
+        });
+
+        // Nappi, joka avaa uuden ikkunan, jossa näkyy simuloinnin tulokset
+        simutiedot.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                /*
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/tuloksetGUI.fxml"));
+                fxmlLoader.setController(kontrolleri);
+                Parent tuloksetRoot = fxmlLoader.load();
+                Stage tuloksetStage = new Stage();
+                tuloksetStage.setScene(new Scene(tuloksetRoot));
+                tuloksetStage.setTitle("Simuloinnin tulokset");
+                Image icon = new Image(getClass().getResourceAsStream("/src/main/resources/icon.png"));
+                tuloksetStage.getIcons().add(icon);
+                */
+                tuloksetStage.show();
+                increment_asiakkaat(tuloksetRoot);
+                /*
+                setKeskiaika(0.0, tuloksetRoot);
+                setKokonaisaika(0.0, tuloksetRoot);
+                */
             }
         });
 
@@ -78,12 +121,13 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         xml.lookup("#aloita").setDisable(false);
     }
 
+
     /**
      * Metodi kasvattaa asiakkaiden lukumäärää yhdellä.
      */
     @Override
-    public void increment_asiakkaat() {
-        Label asiakkaat = (Label) xml.lookup("#asiakas_lkm");
+    public void increment_asiakkaat(Parent tuloksetRoot) {
+        Label asiakkaat = (Label) tuloksetRoot.lookup("#asiakas_lkm");
         int i = Integer.parseInt(asiakkaat.getText());
         i++;
         asiakkaat.setText(String.valueOf(i));
@@ -94,8 +138,8 @@ public class simuGUI extends Application implements ISimulaattorinUI {
      * @param keskiaika keskimääräinen jonotusaika.
      */
     @Override
-    public void setKeskiaika(double keskiaika) {
-        Label keskiaika_label = (Label) xml.lookup("#asiakas_keskiarvo");
+    public void setKeskiaika(double keskiaika, Parent tuloksetRoot) {
+        Label keskiaika_label = (Label) tuloksetRoot.lookup("#asiakas_keskiarvo");
         keskiaika_label.setText(String.valueOf(keskiaika));
     }
 
@@ -104,8 +148,9 @@ public class simuGUI extends Application implements ISimulaattorinUI {
      * @param kokonaisaika kokonaisaika, joka asetetaan
      */
     @Override
-    public void setKokonaisaika(double kokonaisaika) {
-        Label kokonaisaika_label = (Label) xml.lookup("#kokonaisaika");
+    public void setKokonaisaika(double kokonaisaika, Parent tuloksetRoot) {
+        Label kokonaisaika_label = (Label) tuloksetRoot.lookup("#kokonaisaika");
+        kokonaisaika = Math.round(kokonaisaika * 10.0) / 10.0;
         kokonaisaika_label.setText(String.valueOf(kokonaisaika));
     }
 
@@ -179,9 +224,16 @@ public class simuGUI extends Application implements ISimulaattorinUI {
      */
 
     @Override
+    public double getBoardingAika() {
+        TextField boardingaika = (TextField) xml.lookup("#boardingaika");
+        return Double.parseDouble(boardingaika.getText());
+    }
+
+
+    @Override
     public void updateAll(HashMap<String, Integer> mappi) {
         for (String key : mappi.keySet()) {
-            switch (key){
+            switch (key.toUpperCase()){
                 case "KAUPPA":
                     KauppaLukumaara(mappi.get(key));
                     break;
@@ -191,7 +243,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
                 case "CHECK-IN":
                     UpdateCheckinLukumaara(mappi.get(key));
                     break;
-                case "TARKISTUS":
+                case "TURVATARKASTUS":
                     UpdateTarkistusLukumaara(mappi.get(key));
                     break;
                 case "BOARDING":
@@ -221,5 +273,5 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         Slider viive = (Slider) xml.lookup("#nopeusarvo");
         return (long) viive.getValue();
     }
-
 }
+

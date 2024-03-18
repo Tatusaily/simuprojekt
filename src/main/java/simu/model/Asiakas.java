@@ -18,6 +18,7 @@ public class Asiakas implements Comparable<Asiakas> {
 	private static int i = 1;
 	private static long sum = 0;
 	private double jonoaika = 0;
+	private double keskiarvo = 0;
 	ContinuousGenerator kävelyaika = new Normal(15, 10);
 
 	/**
@@ -97,8 +98,11 @@ public class Asiakas implements Comparable<Asiakas> {
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui kentältä: " +poistumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi kentällä: " +(poistumisaika-saapumisaika));
 		sum += (poistumisaika-saapumisaika);
-		double keskiarvo = sum/id;
+		keskiarvo = sum/id;
 		System.out.println(("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo));
+	}
+	public double getKeskiarvo(){
+		return keskiarvo;
 	}
 
 }
