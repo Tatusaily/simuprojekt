@@ -12,4 +12,8 @@ public interface IKontrolleriForM {
     void updateAll(HashMap<String, Integer> mappi);
 
     void increment_lentokone();
+
+    void updateaverageTime(double keskiarvo, Parent tuloksetRoot);
+
+    void totalTime(double aika);
 }

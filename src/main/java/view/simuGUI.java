@@ -19,6 +19,8 @@ import java.util.Objects;
 public class simuGUI extends Application implements ISimulaattorinUI {
     private Parent xml;
     private IKontrolleriForV kontrolleri;
+    private Stage tuloksetStage;
+    private Parent tuloksetRoot;
     @FXML
     private Label asiakkaat; // Label, joka näyttää asiakkaiden lukumäärän tulosikkunassa
 
@@ -26,7 +28,9 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     public void start(Stage stage) throws Exception {
         // Kontrollerin luonti
         this.xml = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/simuGUI.fxml")));
-        kontrolleri = new controller.Kontrolleri(this, xml);
+        this.tuloksetRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/src/main/resources/tuloksetGUI.fxml")));
+
+        kontrolleri = new controller.Kontrolleri(this, tuloksetRoot);
         // aloitellaan näkymä.
         stage.setScene(new Scene(xml, 900, 600));
         stage.setTitle("Lentokenttäsimulaattori");
@@ -35,6 +39,13 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         stage.getIcons().add(icon);
         stage.show();
         this.initializebuttons(); // napeille funktiot
+
+        // Tulosikkunan luonti
+        tuloksetStage = new Stage();
+        tuloksetStage.setScene(new Scene(tuloksetRoot));
+        tuloksetStage.setTitle("Simuloinnin tulokset");
+        tuloksetStage.getIcons().add(icon);
+
     }
     private void initializebuttons(){
         Button startbutton = (Button) xml.lookup("#aloita");
@@ -57,22 +68,22 @@ public class simuGUI extends Application implements ISimulaattorinUI {
         simutiedot.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/tuloksetGUI.fxml"));
-                    fxmlLoader.setController(kontrolleri);
-                    Parent tuloksetRoot = fxmlLoader.load();
-                    Stage tuloksetStage = new Stage();
-                    tuloksetStage.setScene(new Scene(tuloksetRoot));
-                    tuloksetStage.setTitle("Simuloinnin tulokset");
-                    Image icon = new Image(getClass().getResourceAsStream("/src/main/resources/icon.png"));
-                    tuloksetStage.getIcons().add(icon);
-                    tuloksetStage.show();
-                    increment_asiakkaat(tuloksetRoot);
-                    setKeskiaika(0.0, tuloksetRoot);
-                    setKokonaisaika(0.0, tuloksetRoot);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                /*
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/tuloksetGUI.fxml"));
+                fxmlLoader.setController(kontrolleri);
+                Parent tuloksetRoot = fxmlLoader.load();
+                Stage tuloksetStage = new Stage();
+                tuloksetStage.setScene(new Scene(tuloksetRoot));
+                tuloksetStage.setTitle("Simuloinnin tulokset");
+                Image icon = new Image(getClass().getResourceAsStream("/src/main/resources/icon.png"));
+                tuloksetStage.getIcons().add(icon);
+                */
+                tuloksetStage.show();
+                increment_asiakkaat(tuloksetRoot);
+                /*
+                setKeskiaika(0.0, tuloksetRoot);
+                setKokonaisaika(0.0, tuloksetRoot);
+                */
             }
         });
 
@@ -89,11 +100,10 @@ public class simuGUI extends Application implements ISimulaattorinUI {
 
     @Override
     public void increment_asiakkaat(Parent tuloksetRoot) {
-        if (asiakkaat != null) { // Tarkistetaan, että label asiakkaat on olemassa, koska molemmilla ikkunoilla sama kontolleri ja vain toisessa label.
-            int i = Integer.parseInt(asiakkaat.getText());
-            i++;
-            asiakkaat.setText(String.valueOf(i));
-        }
+        Label asiakkaat = (Label) tuloksetRoot.lookup("#asiakas_lkm");
+        int i = Integer.parseInt(asiakkaat.getText());
+        i++;
+        asiakkaat.setText(String.valueOf(i));
     }
 
     @Override
@@ -105,6 +115,7 @@ public class simuGUI extends Application implements ISimulaattorinUI {
     @Override
     public void setKokonaisaika(double kokonaisaika, Parent tuloksetRoot) {
         Label kokonaisaika_label = (Label) tuloksetRoot.lookup("#kokonaisaika");
+        kokonaisaika = Math.round(kokonaisaika * 10.0) / 10.0;
         kokonaisaika_label.setText(String.valueOf(kokonaisaika));
     }
 

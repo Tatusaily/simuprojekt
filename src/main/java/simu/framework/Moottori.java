@@ -56,6 +56,7 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 			viive(); // UUSI
 			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
 			kello.setAika(nykyaika());
+			updateTime();
 			Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
 			suoritaBTapahtumat();
 			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
@@ -64,6 +65,8 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 		tulokset();
 
 	}
+
+	protected abstract void updateTime();
 
 
 	protected boolean checkBoarding() {

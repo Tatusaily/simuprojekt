@@ -20,10 +20,10 @@ public class OmaMoottori extends Moottori{
 		this.tuloksetRoot = tuloksetRoot; // store the Parent object
 		palvelupisteet = new Palvelupiste[5];
 		palvelupisteet[0]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.CHECKIN, "Check-in");
-		palvelupisteet[1]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
+		palvelupisteet[1]=new Palvelupiste(new Normal(10,2), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
 		palvelupisteet[2]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.BOARDING, "Boarding");
-		palvelupisteet[3]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.AULA, "Aula");
-		palvelupisteet[4]=new Palvelupiste(new Normal(5,4), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
+		palvelupisteet[3]=new Palvelupiste(new Normal(2,1), tapahtumalista, TapahtumanTyyppi.AULA, "Aula");
+		palvelupisteet[4]=new Palvelupiste(new Normal(2,1), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
 
 		saapumisprosessi = new Saapumisprosessi(new Negexp(1,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
 
@@ -32,7 +32,7 @@ public class OmaMoottori extends Moottori{
 
 	@Override
 	protected void alustukset() {
-		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
+		saapumisprosessi.generoiSeuraava(this); // Ensimmäinen saapuminen järjestelmään
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class OmaMoottori extends Moottori{
 		Asiakas a;
 		switch ((TapahtumanTyyppi)t.getTyyppi()){
 			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());	// Arrive -> Check-in
-				saapumisprosessi.generoiSeuraava();
+				saapumisprosessi.generoiSeuraava(this);
 				kontrolleri.increment_asiakkaat(tuloksetRoot);
 				break;
 
@@ -69,6 +69,7 @@ public class OmaMoottori extends Moottori{
 				       a = (Asiakas)palvelupisteet[2].otaJonosta();
 					   a.setPoistumisaika(Kello.getInstance().getAika());
 			           a.raportti();
+					   kontrolleri.updateaverageTime(a.getKeskiarvo(), tuloksetRoot);
 					   kontrolleri.increment_lentokone();
 		}
 		updatequeues();
@@ -79,6 +80,11 @@ public class OmaMoottori extends Moottori{
 			jonot.put(p.getNimi(), p.getJononKoko());
 		}
 		kontrolleri.updateAll(jonot);
+	}
+
+	@Override
+	protected void updateTime() {
+		kontrolleri.totalTime(Kello.getInstance().getAika());
 	}
 
 	@Override
@@ -100,5 +106,9 @@ public class OmaMoottori extends Moottori{
 	@Override
 	public void toggleEndButton() {
 		this.endbutton = !this.endbutton;
+	}
+
+	public void increment_asiakkaat() {
+		kontrolleri.increment_asiakkaat(tuloksetRoot);
 	}
 }

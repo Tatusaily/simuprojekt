@@ -111,7 +111,7 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV {
 		Platform.runLater(() -> ui.setKeskiaika(keskiaika, tuloksetRoot));
 	}
 
-	public void totaltime(double kokonaisaika, Parent tuloksetRoot) {
+	public void totalTime(double kokonaisaika) {
 		Platform.runLater(() -> ui.setKokonaisaika(kokonaisaika, tuloksetRoot));
 	}
 }
