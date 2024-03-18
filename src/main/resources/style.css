@@ -1,0 +1,109 @@
+.root {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+}
+
+.text {
+    -fx-fill: #F2F3F4;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+.sidepanel {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
+    -fx-border-width: 0px 2px 0px 0px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.rounded-box {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(142, 128, 222, 0.4), 10, 0, 0, 0);
+}
+
+.rounded-box-top {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px 20px 0px 0px;
+    -fx-background-radius: 20px 20px 0px 0px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.rounded-box-bottom {
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, #39384b, #2a293a);
+    -fx-border-color: #22222f;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 0px 0px 20px 20px;
+    -fx-background-radius: 0px 0px 20px 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.button {
+    -fx-background-color: #39384b;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.button-stop {
+    -fx-background-color: #39384b;
+    -fx-border-color: #ff0000;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.button-aloita {
+    -fx-background-color: #39384b;
+    -fx-border-color: #00ff00;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.button:hover {
+    -fx-background-color: #39384b;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #ffffff, 10, 0, 0, 0);
+}
+
+.button-stop:hover {
+    -fx-background-color: #39384b;
+    -fx-border-color: #ff0000;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #ff0000, 10, 0, 0, 0);
+}
+
+.button-aloita:hover {
+    -fx-background-color: #39384b;
+    -fx-border-color: #00ff00;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #00ff00, 10, 0, 0, 0);
+}
