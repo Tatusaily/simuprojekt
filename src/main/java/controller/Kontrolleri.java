@@ -63,7 +63,7 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 		if (simulointiKaynnissa){
 			moottori.toggleEndButton();
 		} else {
-			moottori.setV/iive(ui.getViive());
+			moottori.setViive(ui.getViive());
 			moottori.setSimulointiaika(ui.getAika());
 			((Thread) moottori).start();
 			simulointiKaynnissa = true;
