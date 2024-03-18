@@ -15,7 +15,13 @@ public class OmaMoottori extends Moottori{
 	private boolean BoardingOpen = false;
 	private Parent tuloksetRoot; // new class variable
 
-	public OmaMoottori(IKontrolleriForM kontrolleri, Parent tuloksetRoot){
+
+	/**
+	 * Konstruktori luo uuden moottorin ja asettaa sille kontrollerin.
+	 * @param kontrolleri käytettävä kontrolleri
+	 * @param kontrolleri
+	 */
+	public OmaMoottori(IKontrolleriForM kontrolleri, Parent tuloksetRoot) {
 		super(kontrolleri);
 		this.tuloksetRoot = tuloksetRoot; // store the Parent object
 		palvelupisteet = new Palvelupiste[5];
@@ -26,15 +32,21 @@ public class OmaMoottori extends Moottori{
 		palvelupisteet[4]=new Palvelupiste(new Normal(2,1), tapahtumalista, TapahtumanTyyppi.KAUPPA, "Kauppa");
 
 		saapumisprosessi = new Saapumisprosessi(new Negexp(1,5), tapahtumalista, TapahtumanTyyppi.ARRIVE);
-
 	}
 
-
+	/**
+	 * Ensimmäinen tapahtuma luodaan ja simulointi käynnistyy.
+	 */
 	@Override
 	protected void alustukset() {
 		saapumisprosessi.generoiSeuraava(this); // Ensimmäinen saapuminen järjestelmään
 	}
 
+	/**
+	 * Ensimmäinen tapahtuma luodaan ja simulointi käynnistyy.
+	 * Jokainen tapahtumatyyppi vastaa erilaista toimintoa simulaatiossa.
+	 * @param t suoritettava tapahtuma
+	 */
 	@Override
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 		// TODO Boarding aukeaminen
@@ -52,18 +64,19 @@ public class OmaMoottori extends Moottori{
 			case TARKISTUS: a = (Asiakas)palvelupisteet[1].otaJonosta();
 				   	   palvelupisteet[3].lisaaJonoon(a);
 				break;
+        
 			case AULA:
 				a = (Asiakas)palvelupisteet[3].otaJonosta();
 				if (checkBoarding()){
 					palvelupisteet[2].lisaaJonoon(a); // Aulasta boardingiin
 				} else {
-					// Jos Boarding ei ole avoinna -> ohjaa kauppaan
 					palvelupisteet[4].lisaaJonoon(a);
 				}
 				break;
+        
 			case KAUPPA:
 				a = (Asiakas)palvelupisteet[4].otaJonosta();
-				palvelupisteet[3].lisaaJonoon(a); // Kaupasta aina aulaan
+				palvelupisteet[3].lisaaJonoon(a);
 				break;
 			case BOARDING:
 				       a = (Asiakas)palvelupisteet[2].otaJonosta();
@@ -87,6 +100,11 @@ public class OmaMoottori extends Moottori{
 		kontrolleri.totalTime(Kello.getInstance().getAika());
 	}
 
+	/**
+	 * Yrittää suorittaa kaikki palvelupisteet, joissa ei ole varattua asiakasta.
+	 * Se käy läpi kaikki palvelupisteet ja aloittaa palvelun, jos palvelupisteessä on jonoa.
+	 */
+
 	@Override
 	protected void yritaCTapahtumat(){
 		for (Palvelupiste p: palvelupisteet){
@@ -96,13 +114,19 @@ public class OmaMoottori extends Moottori{
 		}
 	}
 
+	/**
+	 * Tämä metodi kutsutaan simulaation lopussa
+	 * Tulostaa simulaation tulokset.
+	 */
 	@Override
 	protected void tulokset() {
 		System.out.println("Simulointi päättyi kello " + Kello.getInstance().getAika());
 		System.out.println("Tulokset ... puuttuvat vielä");
 	}
 
-
+	/**
+	 * Lopettaa simulaation.
+	 */
 	@Override
 	public void toggleEndButton() {
 		this.endbutton = !this.endbutton;
