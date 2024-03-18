@@ -4,6 +4,7 @@ import controller.IKontrolleriForM;
 import simu.framework.*;
 import distributions.Negexp;
 import distributions.Normal;
+import javafx.scene.Parent;
 
 import java.util.HashMap;
 
@@ -11,9 +12,12 @@ public class OmaMoottori extends Moottori{
 	private final Saapumisprosessi saapumisprosessi;
 	private final Palvelupiste[] palvelupisteet;
 	private HashMap<String, Integer> jonot = new HashMap<>();
+	private boolean BoardingOpen = false;
+	private Parent tuloksetRoot; // new class variable
 
-	public OmaMoottori(IKontrolleriForM kontrolleri){
+	public OmaMoottori(IKontrolleriForM kontrolleri, Parent tuloksetRoot){
 		super(kontrolleri);
+		this.tuloksetRoot = tuloksetRoot; // store the Parent object
 		palvelupisteet = new Palvelupiste[5];
 		palvelupisteet[0]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.CHECKIN, "Check-in");
 		palvelupisteet[1]=new Palvelupiste(new Normal(10,8), tapahtumalista, TapahtumanTyyppi.TARKISTUS, "Turvatarkastus");
@@ -38,7 +42,7 @@ public class OmaMoottori extends Moottori{
 		switch ((TapahtumanTyyppi)t.getTyyppi()){
 			case ARRIVE: palvelupisteet[0].lisaaJonoon(new Asiakas());	// Arrive -> Check-in
 				saapumisprosessi.generoiSeuraava();
-				kontrolleri.increment_asiakkaat();
+				kontrolleri.increment_asiakkaat(tuloksetRoot);
 				break;
 
 			case CHECKIN: a = (Asiakas)palvelupisteet[0].otaJonosta();	// Check-in -> Tarkistus
