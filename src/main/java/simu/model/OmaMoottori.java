@@ -50,7 +50,7 @@ public class OmaMoottori extends Moottori{
 				break;
 			case AULA:
 				a = (Asiakas)palvelupisteet[3].otaJonosta();
-				if (boardingOpen) {
+				if (checkBoarding()){
 					palvelupisteet[2].lisaaJonoon(a); // Aulasta boardingiin
 				} else {
 					// Jos Boarding ei ole avoinna -> ohjaa kauppaan
@@ -94,7 +94,7 @@ public class OmaMoottori extends Moottori{
 
 
 	@Override
-	public void lopeta() {
-		this.endbutton = true;
+	public void toggleEndButton() {
+		this.endbutton = !this.endbutton;
 	}
 }

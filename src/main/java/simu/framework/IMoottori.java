@@ -8,5 +8,5 @@ public interface IMoottori { // UUSI
 	public void setViive(long aika);
 	public long getViive();
 
-	void lopeta();
+	void toggleEndButton();
 }

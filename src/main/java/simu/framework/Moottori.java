@@ -11,9 +11,9 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 	private long viive = 0;
 
 	private Kello kello;
-	protected Boolean endbutton = false;
+	public Boolean endbutton = false;
 	protected Boolean boardingOpen = false;
-	private double boardingAika = 0;
+	private double boardingAika = 1000;
 
 	protected Tapahtumalista tapahtumalista;
 
@@ -67,10 +67,8 @@ public abstract class Moottori extends Thread implements IMoottori{  // UUDET MÃ
 	}
 
 
-	private void checkBoarding() {
-		if(kello.getAika() >= boardingAika){
-			boardingOpen = true;
-		}
+	protected boolean checkBoarding() {
+		return kello.getAika() >= boardingAika;
 	}
 
 	private void suoritaBTapahtumat(){

@@ -57,14 +57,20 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	private Boolean simulointiKaynnissa = false;
 	@Override
 	public void kaynnistaSimulointi() {
-		moottori = new OmaMoottori(this); // luodaan uusi moottorisäie jokaista simulointia varten
-		moottori.setSimulointiaika(ui.getAika());
-		moottori.setViive(ui.getViive());
-		((Thread)moottori).start();
-		simulointiKaynnissa = true;
+		if (moottori == null) {
+			moottori = new OmaMoottori(this);	// luodaan uusi moottorisäie jokaista simulointia varten
+		}
+		if (simulointiKaynnissa){
+			moottori.toggleEndButton();
+		} else {
+			moottori.setV/iive(ui.getViive());
+			moottori.setSimulointiaika(ui.getAika());
+			((Thread) moottori).start();
+			simulointiKaynnissa = true;
+		}
 	}
 	public void lopetaSimulointi() {
-		moottori.lopeta();
+		moottori.toggleEndButton();
 		simulointiKaynnissa = false;
 	}
 
