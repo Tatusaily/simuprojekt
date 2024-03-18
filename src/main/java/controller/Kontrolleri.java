@@ -12,6 +12,13 @@ import view.ISimulaattorinUI;
 
 import java.util.HashMap;
 
+
+/**
+ * Kontrolleri-luokka vastaa simulaation käynnistämisestä ja lopettamisesta.
+ * @author Abdullahi
+ * @version 1.0
+ */
+
 public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	@FXML
@@ -42,19 +49,29 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 	private Label lentokone_lukum;
 
 
-
-
+	/**
+	 * Moottori, joka suorittaa simulaation.
+	 */
 	private IMoottori moottori;
+	/**
+	 * Käyttöliittymä, jota kontrolleri ohjaa.
+	 */
 	private ISimulaattorinUI ui;
 
+	/**
+	 * Kontrolleri-luokka vastaa simulaation käynnistämisestä ja lopettamisesta.
+	 * @param ui käyttöliittymä, jota kontrolleri ohjaa.
+	 * @
+	 */
 	public Kontrolleri(ISimulaattorinUI ui) {
 		this.ui = ui;
 
 	}
-
-
-	// Moottorin ohjausta:
 	private Boolean simulointiKaynnissa = false;
+	/**
+	 * Metotodi käynnistää simulaation. Luodaan uusi moottorisäie jokaista simulointia varten.
+	 *
+	 */
 	@Override
 	public void kaynnistaSimulointi() {
 		moottori = new OmaMoottori(this); // luodaan uusi moottorisäie jokaista simulointia varten
@@ -63,16 +80,25 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 		((Thread)moottori).start();
 		simulointiKaynnissa = true;
 	}
+	/**
+	 * Lopettaa simulaation.
+	 */
 	public void lopetaSimulointi() {
 		moottori.lopeta();
 		simulointiKaynnissa = false;
 	}
 
+	/**
+	 * Hidastaa moottorisäiettä
+	 */
 	@Override
-	public void hidasta() { // hidastetaan moottorisäiettä
+	public void hidasta() {
 		moottori.setViive((long)(moottori.getViive()*1.10));
 	}
-
+	/**
+	 * Nopeuttaa moottorisäiettä
+	 * @return simulointiKaynnissa
+	 */
 	@Override
 	public void nopeuta() { // nopeutetaan moottorisäiettä
 		moottori.setViive((long)(moottori.getViive()*0.9));
@@ -82,16 +108,28 @@ public class Kontrolleri implements IKontrolleriForM, IKontrolleriForV{
 
 	// Simulointitulosten välittämistä käyttöliittymään.
 	// Koska FX-ui:n päivitykset tulevat moottorisäikeestä, ne pitää ohjata JavaFX-säikeeseen:
+
+	/**
+	 * Päivittää käyttöliittymän asiakas-laskurin.
+	 *
+	 */
 	@Override
 	public void increment_asiakkaat() {
 		Platform.runLater(()->ui.increment_asiakkaat());
 	}
 
+	/**
+	 * Päivittää käyttöliittymän asiakas-laskurin.
+	 *
+	 */
 	@Override
 	public void updateAll(HashMap<String, Integer> mappi) {
 		Platform.runLater(()->ui.updateAll(mappi));
 	}
 
+	/**
+	 * Päivittää käyttöliittymän lentokone-laskurin.
+	 */
 	@Override
 	public void increment_lentokone() {
 		Platform.runLater(()->ui.increment_lentokone());

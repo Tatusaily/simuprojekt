@@ -18,5 +18,38 @@
         <dependency> <groupId>org.openjfx</groupId> <artifactId>javafx-fxml</artifactId> <version>20.0.1</version> </dependency>
         <dependency> <groupId>org.openjfx</groupId> <artifactId>javafx-controls</artifactId> <version>20.0.1</version> </dependency>
     </dependencies>
-    
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>.idea/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${basedir}</directory>
+                <excludes>
+                    <exclude>.idea/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <excludes>
+                    <exclude>.idea/**</exclude>
+                </excludes>
+            </testResource>
+            <testResource>
+                <directory>${basedir}</directory>
+                <excludes>
+                    <exclude>.idea/**</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+    </build>
+
+
+
 </project>
